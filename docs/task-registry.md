@@ -41,6 +41,17 @@ Branch: all sprint work on feature branch `outbound-p1-mvp` (created off main at
   (cannot lazy-load the primary canvas). The gate remains in force for every OTHER chunk.
   Auditors cite R3 instead of re-litigating per FE task. Pending human report-time review.
 
+- **R4 (2026-07-11, markers.spec test-only hardening):** fe-05's remediation (dynamic-import of
+  nps-content + drawer; entry chunk 1193→552 kB) leaves one residual: markers.spec.ts:42 fails on
+  mobile-chrome because ~211 kB of motion/react runtime stays in the entry chunk, anchored by
+  frozen files (fe-01 day-dot-cluster, fe-02b map-canvas) — Rollup INEFFECTIVE_DYNAMIC_IMPORT
+  confirmed it cannot be split without touching frozen scope. RULING: authorize a TEST-ONLY
+  hardening of fe-04's e2e/markers.spec.ts selection helper to the in-browser
+  evaluate/dispatchEvent pattern already used by park-detail.spec.ts (robust under software-WebGL
+  actionability slowness). No product code changes. The spec's a11y receipts (focus-visible,
+  ≥44px touch targets) must remain asserted. AUD re-adjudicates the FULL suite at fe-05 re-audit.
+  Pending human report-time review.
+
 ## Expectation Manifest
 
 <expectation_manifest>
