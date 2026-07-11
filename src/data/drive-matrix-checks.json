@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-07-11T19:50:29.951Z",
+  "method": "estimated",
+  "osrmOutcome": "discarded — measured but failed §7.5 band(s): arch=7.88h, yose=19.06h",
+  "calibration": {
+    "shortRangeThresholdMiles": 100,
+    "shortRangeCircuity": 1.5,
+    "shortRangeAvgMph": 34,
+    "longRangeCircuity": 1.25,
+    "longRangeAvgMph": 62
+  },
+  "checks": [
+    {
+      "name": "romo",
+      "toId": "romo",
+      "measuredHours": 1.195831859961028,
+      "band": "< 2h",
+      "pass": true
+    },
+    {
+      "name": "arch",
+      "toId": "arch",
+      "measuredHours": 5.479008311648252,
+      "band": "5-6h",
+      "pass": true
+    },
+    {
+      "name": "yose",
+      "toId": "yose",
+      "measuredHours": 16.03093329258277,
+      "band": "15-17h",
+      "pass": true
+    },
+    {
+      "name": "acad",
+      "toId": "acad",
+      "measuredHours": 37.92878872711205,
+      "band": ">= 30h",
+      "pass": true
+    }
+  ],
+  "allPass": true
+}
