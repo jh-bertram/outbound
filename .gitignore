@@ -7,3 +7,9 @@ dist/
 .DS_Store
 .claude/tasks/outputs/*
 !.claude/tasks/outputs/.gitkeep
+
+# Build/test tooling (outbound-p1-be-01 scaffold)
+*.tsbuildinfo
+playwright-report/
+test-results/
+.vite/
