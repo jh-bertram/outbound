@@ -1,0 +1,78 @@
+# Deploy Outbound to GitHub Pages.
+#
+# ─── ONE-TIME ORC-OWNED REPO SETUP (must happen BEFORE the first run) ───
+#
+#   1. Enable Pages with the "workflow" build source (NOT the legacy branch
+#      source), since this repo deploys via Actions, not a gh-pages branch:
+#
+#        gh api -X POST repos/jh-bertram/outbound/pages -f build_type=workflow
+#
+#   2. Add the `outbound-p1-mvp` feature branch to the `github-pages`
+#      environment's Deployment-branches allowlist:
+#
+#        Settings -> Environments -> github-pages -> Deployment branches
+#        and tags -> add branch `outbound-p1-mvp`
+#
+#      The auto-created `github-pages` environment protects ONLY the
+#      default branch by default. Without this step, the first
+#      feature-branch deploy fails with:
+#        "Branch 'outbound-p1-mvp' is not allowed to deploy to
+#         github-pages due to environment protection rules."
+#
+# ──────────────────────────────────────────────────────────────────────
+#
+# Trigger: pushes to main (post-merge) AND outbound-p1-mvp (pre-merge
+# feature-branch preview, since main-push is currently policy-blocked),
+# plus manual dispatch.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, outbound-p1-mvp]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

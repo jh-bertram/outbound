@@ -31,7 +31,22 @@ npm run fetch-data  # build-time data pipeline: NPS content fetch + drive-time m
 
 The app is a fully static site (Vite build output in `dist/`), built with
 `base: '/outbound/'` so asset URLs resolve under the GitHub Pages project path
-(`https://<user>.github.io/outbound/`). CI deploy workflow is authored in
-`outbound-p1-be-05`; see `.github/workflows/deploy.yml` (once that task lands) for
-the exact GitHub Actions Pages pipeline and the one-time repo setup steps it
-requires.
+(`https://jh-bertram.github.io/outbound/`). `.github/workflows/deploy.yml`
+builds with `npm ci && npm run build` and deploys `dist/` via the GitHub
+Actions Pages pipeline (`actions/upload-pages-artifact` +
+`actions/deploy-pages`) on every push to `main` or `outbound-p1-mvp`, or via
+manual `workflow_dispatch`.
+
+**One-time repo setup (must be done once, by a repo admin, before the first
+run):**
+
+1. Enable Pages with the "workflow" build source:
+   ```sh
+   gh api -X POST repos/jh-bertram/outbound/pages -f build_type=workflow
+   ```
+2. Add the `outbound-p1-mvp` feature branch to the `github-pages`
+   environment's deployment-branch allowlist: **Settings → Environments →
+   github-pages → Deployment branches and tags → add branch
+   `outbound-p1-mvp`.** The auto-created `github-pages` environment protects
+   only the default branch, so the first feature-branch deploy fails without
+   this step.
