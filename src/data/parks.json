@@ -1,0 +1,1026 @@
+[
+  {
+    "id": "acad",
+    "parkCode": "acad",
+    "fullName": "Acadia National Park",
+    "states": [
+      "ME"
+    ],
+    "routingCoord": {
+      "lat": 44.3875,
+      "lng": -68.2039
+    },
+    "coordSource": "Hulls Cove Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Compact park; Park Loop Road, Cadillac Mountain sunrise, and Jordan Pond cover the highlights in about two days."
+  },
+  {
+    "id": "npsa",
+    "parkCode": "npsa",
+    "fullName": "National Park of American Samoa",
+    "states": [
+      "AS"
+    ],
+    "routingCoord": {
+      "lat": -14.2711,
+      "lng": -170.6829
+    },
+    "coordSource": "Pago Pago Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Remote, small footprint split across three islands; Tutuila and Ofu highlights fit a short visit.",
+    "notDrivableReason": "Located in American Samoa, South Pacific — accessible only by international flight; no road or ferry link to the US mainland."
+  },
+  {
+    "id": "arch",
+    "parkCode": "arch",
+    "fullName": "Arches National Park",
+    "states": [
+      "UT"
+    ],
+    "routingCoord": {
+      "lat": 38.7331,
+      "lng": -109.5925
+    },
+    "coordSource": "Arches Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Compact park; Devils Garden, Delicate Arch, and the Windows section are doable in about two days."
+  },
+  {
+    "id": "badl",
+    "parkCode": "badl",
+    "fullName": "Badlands National Park",
+    "states": [
+      "SD"
+    ],
+    "routingCoord": {
+      "lat": 43.75,
+      "lng": -101.9333
+    },
+    "coordSource": "Ben Reifel Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The Badlands Loop Road and short overlook trails can be seen thoroughly in a single day."
+  },
+  {
+    "id": "bibe",
+    "parkCode": "bibe",
+    "fullName": "Big Bend National Park",
+    "states": [
+      "TX"
+    ],
+    "routingCoord": {
+      "lat": 29.33,
+      "lng": -103.2044
+    },
+    "coordSource": "Panther Junction Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Three distinct zones (Chisos Mountains, desert, Rio Grande) plus remoteness reward a multi-day stay."
+  },
+  {
+    "id": "bisc",
+    "parkCode": "bisc",
+    "fullName": "Biscayne National Park",
+    "states": [
+      "FL"
+    ],
+    "routingCoord": {
+      "lat": 25.4663,
+      "lng": -80.3269
+    },
+    "coordSource": "Dante Fascell Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "95% water; most visitors see the highlights via a single boat tour or paddling day trip."
+  },
+  {
+    "id": "blca",
+    "parkCode": "blca",
+    "fullName": "Black Canyon of the Gunnison National Park",
+    "states": [
+      "CO"
+    ],
+    "routingCoord": {
+      "lat": 38.5754,
+      "lng": -107.7416
+    },
+    "coordSource": "South Rim Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "South Rim Drive overlooks can be covered thoroughly in a half-to-full day."
+  },
+  {
+    "id": "brca",
+    "parkCode": "brca",
+    "fullName": "Bryce Canyon National Park",
+    "states": [
+      "UT"
+    ],
+    "routingCoord": {
+      "lat": 37.6283,
+      "lng": -112.1676
+    },
+    "coordSource": "Bryce Canyon Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Amphitheater viewpoints plus a rim or Navajo/Queens Garden hike fill two days well."
+  },
+  {
+    "id": "cany",
+    "parkCode": "cany",
+    "fullName": "Canyonlands National Park",
+    "states": [
+      "UT"
+    ],
+    "routingCoord": {
+      "lat": 38.46,
+      "lng": -109.8203
+    },
+    "coordSource": "Island in the Sky Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Four districts (Island in the Sky, Needles, Maze, rivers) spread far apart; 2-3 days covers the accessible ones."
+  },
+  {
+    "id": "care",
+    "parkCode": "care",
+    "fullName": "Capitol Reef National Park",
+    "states": [
+      "UT"
+    ],
+    "routingCoord": {
+      "lat": 38.2916,
+      "lng": -111.2615
+    },
+    "coordSource": "Capitol Reef Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Scenic Drive, Capitol Gorge, and the historic Fruita district fit a two-day visit."
+  },
+  {
+    "id": "cave",
+    "parkCode": "cave",
+    "fullName": "Carlsbad Caverns National Park",
+    "states": [
+      "NM"
+    ],
+    "routingCoord": {
+      "lat": 32.1479,
+      "lng": -104.5567
+    },
+    "coordSource": "Carlsbad Caverns Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The main cavern tour is the centerpiece and fits comfortably in a single day."
+  },
+  {
+    "id": "chis",
+    "parkCode": "chis",
+    "fullName": "Channel Islands National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 34.2678,
+      "lng": -119.2179
+    },
+    "coordSource": "Robert J. Lagomarsino Visitor Center (mainland, Ventura) — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Each island is a separate boat trip; two days covers one or two islands well.",
+    "notDrivableReason": "The five Channel Islands have no bridge or causeway to the mainland; reached only by concessioner boat or private vessel from Ventura/Oxnard, CA."
+  },
+  {
+    "id": "cong",
+    "parkCode": "cong",
+    "fullName": "Congaree National Park",
+    "states": [
+      "SC"
+    ],
+    "routingCoord": {
+      "lat": 33.8362,
+      "lng": -80.7821
+    },
+    "coordSource": "Harry Hampton Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The Boardwalk Loop and a canoe trip on Cedar Creek cover the highlights in a day."
+  },
+  {
+    "id": "crla",
+    "parkCode": "crla",
+    "fullName": "Crater Lake National Park",
+    "states": [
+      "OR"
+    ],
+    "routingCoord": {
+      "lat": 42.9055,
+      "lng": -122.1408
+    },
+    "coordSource": "Steel Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Rim Drive plus a boat tour to Wizard Island make for a full two days."
+  },
+  {
+    "id": "cuva",
+    "parkCode": "cuva",
+    "fullName": "Cuyahoga Valley National Park",
+    "states": [
+      "OH"
+    ],
+    "routingCoord": {
+      "lat": 41.2808,
+      "lng": -81.5678
+    },
+    "coordSource": "Boston Mill Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "Compact valley park; the Towpath Trail and Brandywine Falls are an easy single-day visit."
+  },
+  {
+    "id": "deva",
+    "parkCode": "deva",
+    "fullName": "Death Valley National Park",
+    "states": [
+      "CA",
+      "NV"
+    ],
+    "routingCoord": {
+      "lat": 36.462,
+      "lng": -116.8697
+    },
+    "coordSource": "Furnace Creek Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Vast park, but the highlights (Badwater, dunes, Zabriskie Point, Artists Drive) cluster near Furnace Creek for a two-day loop."
+  },
+  {
+    "id": "dena",
+    "parkCode": "dena",
+    "fullName": "Denali National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 63.7284,
+      "lng": -148.9153
+    },
+    "coordSource": "Denali Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "The park-road bus tour into the interior plus wildlife-viewing time justifies several days."
+  },
+  {
+    "id": "drto",
+    "parkCode": "drto",
+    "fullName": "Dry Tortugas National Park",
+    "states": [
+      "FL"
+    ],
+    "routingCoord": {
+      "lat": 24.6285,
+      "lng": -82.873
+    },
+    "coordSource": "Fort Jefferson — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 1,
+    "stayRationale": "The Fort Jefferson tour and snorkeling fill a single day trip (most visit via day ferry).",
+    "notDrivableReason": "A remote island group about 70 miles west of Key West with no road access; reached only by ferry or seaplane."
+  },
+  {
+    "id": "ever",
+    "parkCode": "ever",
+    "fullName": "Everglades National Park",
+    "states": [
+      "FL"
+    ],
+    "routingCoord": {
+      "lat": 25.3966,
+      "lng": -80.5883
+    },
+    "coordSource": "Ernest F. Coe Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Two distinct entrances (Royal Palm/Flamingo and Shark Valley) with airboat/canoe options fill two days."
+  },
+  {
+    "id": "gaar",
+    "parkCode": "gaar",
+    "fullName": "Gates of the Arctic National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 66.9105,
+      "lng": -151.5546
+    },
+    "coordSource": "Visitor Center (Bettles/Coldfoot access) — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 3,
+    "stayRationale": "Wilderness-only access rewards a multi-day backcountry stay for those who fly in.",
+    "notDrivableReason": "Gates of the Arctic has no roads into or within the park; access is by bush plane or on foot from Bettles/Coldfoot, AK."
+  },
+  {
+    "id": "jeff",
+    "parkCode": "jeff",
+    "fullName": "Gateway Arch National Park",
+    "states": [
+      "MO"
+    ],
+    "routingCoord": {
+      "lat": 38.6247,
+      "lng": -90.1848
+    },
+    "coordSource": "Gateway Arch Visitor Center, St. Louis — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The Arch, museum, and riverfront are an urban half-to-full-day visit."
+  },
+  {
+    "id": "glac",
+    "parkCode": "glac",
+    "fullName": "Glacier National Park",
+    "states": [
+      "MT"
+    ],
+    "routingCoord": {
+      "lat": 48.5225,
+      "lng": -113.9948
+    },
+    "coordSource": "Apgar Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 4,
+    "stayRationale": "Going-to-the-Sun Road plus multiple valley hikes (Many Glacier, Two Medicine) merit several days."
+  },
+  {
+    "id": "glba",
+    "parkCode": "glba",
+    "fullName": "Glacier Bay National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 58.4546,
+      "lng": -135.8814
+    },
+    "coordSource": "Bartlett Cove Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Best experienced via a day cruise into the bay; two days allows kayaking too.",
+    "notDrivableReason": "Glacier Bay has no road access to the bay/park interior; reached by boat or floatplane from Gustavus/Juneau, AK."
+  },
+  {
+    "id": "grca",
+    "parkCode": "grca",
+    "fullName": "Grand Canyon National Park",
+    "states": [
+      "AZ"
+    ],
+    "routingCoord": {
+      "lat": 36.0544,
+      "lng": -112.1401
+    },
+    "coordSource": "Grand Canyon Visitor Center (South Rim) — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "South Rim viewpoints, a rim trail, and ideally a sunrise/sunset justify 2-3 days."
+  },
+  {
+    "id": "grte",
+    "parkCode": "grte",
+    "fullName": "Grand Teton National Park",
+    "states": [
+      "WY"
+    ],
+    "routingCoord": {
+      "lat": 43.6532,
+      "lng": -110.7995
+    },
+    "coordSource": "Craig Thomas Discovery and Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Jenny Lake, Teton Park Road, and hiking trailheads spread across a large valley."
+  },
+  {
+    "id": "grba",
+    "parkCode": "grba",
+    "fullName": "Great Basin National Park",
+    "states": [
+      "NV"
+    ],
+    "routingCoord": {
+      "lat": 39.0053,
+      "lng": -114.2214
+    },
+    "coordSource": "Lehman Caves Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "The Lehman Caves tour plus a drive up the Wheeler Peak Scenic Drive fill two days."
+  },
+  {
+    "id": "grsa",
+    "parkCode": "grsa",
+    "fullName": "Great Sand Dunes National Park and Preserve",
+    "states": [
+      "CO"
+    ],
+    "routingCoord": {
+      "lat": 37.7916,
+      "lng": -105.5943
+    },
+    "coordSource": "Great Sand Dunes Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The dune field and Medano Creek are the main draw, doable in a day."
+  },
+  {
+    "id": "grsm",
+    "parkCode": "grsm",
+    "fullName": "Great Smoky Mountains National Park",
+    "states": [
+      "TN",
+      "NC"
+    ],
+    "routingCoord": {
+      "lat": 35.6532,
+      "lng": -83.5357
+    },
+    "coordSource": "Sugarlands Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "The most-visited park in the system; Cades Cove, Clingmans Dome, and multiple trailheads need a few days."
+  },
+  {
+    "id": "gumo",
+    "parkCode": "gumo",
+    "fullName": "Guadalupe Mountains National Park",
+    "states": [
+      "TX"
+    ],
+    "routingCoord": {
+      "lat": 31.8985,
+      "lng": -104.8264
+    },
+    "coordSource": "Pine Springs Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Guadalupe Peak and McKittrick Canyon are separate half-day-plus hikes."
+  },
+  {
+    "id": "hale",
+    "parkCode": "hale",
+    "fullName": "Haleakala National Park",
+    "states": [
+      "HI"
+    ],
+    "routingCoord": {
+      "lat": 20.7204,
+      "lng": -156.25
+    },
+    "coordSource": "Headquarters Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Summit sunrise and the Kipahulu coastal district are separate excursions.",
+    "notDrivableReason": "Located on Maui, Hawaii — no road or bridge connection to the continental US; an ocean crossing is required."
+  },
+  {
+    "id": "havo",
+    "parkCode": "havo",
+    "fullName": "Hawai'i Volcanoes National Park",
+    "states": [
+      "HI"
+    ],
+    "routingCoord": {
+      "lat": 19.43,
+      "lng": -155.2588
+    },
+    "coordSource": "Kilauea Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Crater Rim Drive, Chain of Craters Road, and lava-tube exploration fill two days.",
+    "notDrivableReason": "Located on the Big Island, Hawaii — no road or bridge connection to the continental US; an ocean crossing is required."
+  },
+  {
+    "id": "hosp",
+    "parkCode": "hosp",
+    "fullName": "Hot Springs National Park",
+    "states": [
+      "AR"
+    ],
+    "routingCoord": {
+      "lat": 34.5117,
+      "lng": -93.0552
+    },
+    "coordSource": "Fordyce Bathhouse Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The compact Bathhouse Row and short mountain trails fit an easy day."
+  },
+  {
+    "id": "indu",
+    "parkCode": "indu",
+    "fullName": "Indiana Dunes National Park",
+    "states": [
+      "IN"
+    ],
+    "routingCoord": {
+      "lat": 41.6202,
+      "lng": -87.0522
+    },
+    "coordSource": "Indiana Dunes Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "Dune climbs and Lake Michigan beach access cover the park in a day."
+  },
+  {
+    "id": "isro",
+    "parkCode": "isro",
+    "fullName": "Isle Royale National Park",
+    "states": [
+      "MI"
+    ],
+    "routingCoord": {
+      "lat": 47.1211,
+      "lng": -88.5721
+    },
+    "coordSource": "Houghton Visitor Center (mainland) — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 3,
+    "stayRationale": "Remote lake-island wilderness rewards a multi-day backpacking or paddling stay.",
+    "notDrivableReason": "An island in Lake Superior with no road or bridge access; reached only by ferry or seaplane from Michigan/Minnesota."
+  },
+  {
+    "id": "jotr",
+    "parkCode": "jotr",
+    "fullName": "Joshua Tree National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 34.1347,
+      "lng": -116.3131
+    },
+    "coordSource": "Oasis Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Two ecosystems (Colorado/Mojave desert) plus rock-climbing areas fill two days."
+  },
+  {
+    "id": "katm",
+    "parkCode": "katm",
+    "fullName": "Katmai National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 58.6768,
+      "lng": -156.6588
+    },
+    "coordSource": "Visitor Center, King Salmon — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 3,
+    "stayRationale": "Brooks Falls bear viewing and the Valley of Ten Thousand Smokes reward a multi-day stay.",
+    "notDrivableReason": "No road connection to the Alaska highway system; access is via floatplane or boat from King Salmon, AK."
+  },
+  {
+    "id": "kefj",
+    "parkCode": "kefj",
+    "fullName": "Kenai Fjords National Park",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 60.1213,
+      "lng": -149.4384
+    },
+    "coordSource": "Visitor Center, Seward — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Exit Glacier plus a boat tour into the fjords fill two days."
+  },
+  {
+    "id": "seki-kica",
+    "parkCode": "seki",
+    "fullName": "Kings Canyon National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 36.8879,
+      "lng": -118.6402
+    },
+    "coordSource": "Kings Canyon Visitor Center, Grant Grove — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Grant Grove and the Cedar Grove/canyon road are the main sights, roughly two days."
+  },
+  {
+    "id": "kova",
+    "parkCode": "kova",
+    "fullName": "Kobuk Valley National Park",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 66.8988,
+      "lng": -159.7973
+    },
+    "coordSource": "Headquarters, Kotzebue — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "The Great Kobuk Sand Dunes are remote and typically a short fly-in stay.",
+    "notDrivableReason": "No roads into or within the park; access is by bush plane from Kotzebue, AK."
+  },
+  {
+    "id": "lacl",
+    "parkCode": "lacl",
+    "fullName": "Lake Clark National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 60.202,
+      "lng": -154.3164
+    },
+    "coordSource": "Visitor Center, Port Alsworth — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Fly-in lodges near Port Alsworth support a short multi-day wilderness stay.",
+    "notDrivableReason": "No road access; the park is reached only by small plane or boat from Anchorage/Homer, AK."
+  },
+  {
+    "id": "lavo",
+    "parkCode": "lavo",
+    "fullName": "Lassen Volcanic National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 40.4977,
+      "lng": -121.4207
+    },
+    "coordSource": "Kohm Yah-mah-nee Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Bumpass Hell, Lassen Peak, and hydrothermal areas fit two days."
+  },
+  {
+    "id": "maca",
+    "parkCode": "maca",
+    "fullName": "Mammoth Cave National Park",
+    "states": [
+      "KY"
+    ],
+    "routingCoord": {
+      "lat": 37.187,
+      "lng": -86.1005
+    },
+    "coordSource": "Mammoth Cave Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The famous cave tours are the centerpiece and fit a single day."
+  },
+  {
+    "id": "meve",
+    "parkCode": "meve",
+    "fullName": "Mesa Verde National Park",
+    "states": [
+      "CO"
+    ],
+    "routingCoord": {
+      "lat": 37.2309,
+      "lng": -108.4618
+    },
+    "coordSource": "Visitor and Research Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Cliff-dwelling tours (Cliff Palace, Balcony House) plus the mesa-top loop fill two days."
+  },
+  {
+    "id": "mora",
+    "parkCode": "mora",
+    "fullName": "Mount Rainier National Park",
+    "states": [
+      "WA"
+    ],
+    "routingCoord": {
+      "lat": 46.7863,
+      "lng": -121.7357
+    },
+    "coordSource": "Longmire/Paradise entrance corridor — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Paradise, Sunrise, and Wonderland Trail approaches each merit separate visits."
+  },
+  {
+    "id": "neri",
+    "parkCode": "neri",
+    "fullName": "New River Gorge National Park and Preserve",
+    "states": [
+      "WV"
+    ],
+    "routingCoord": {
+      "lat": 37.8712,
+      "lng": -81.079
+    },
+    "coordSource": "Canyon Rim Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "Canyon Rim overlooks and the bridge walk fit an easy day."
+  },
+  {
+    "id": "noca",
+    "parkCode": "noca",
+    "fullName": "North Cascades National Park",
+    "states": [
+      "WA"
+    ],
+    "routingCoord": {
+      "lat": 48.7008,
+      "lng": -121.2755
+    },
+    "coordSource": "North Cascades Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Remote, rugged terrain; the Diablo Lake overlook and a trail or two fill two days."
+  },
+  {
+    "id": "olym",
+    "parkCode": "olym",
+    "fullName": "Olympic National Park",
+    "states": [
+      "WA"
+    ],
+    "routingCoord": {
+      "lat": 47.9673,
+      "lng": -123.4319
+    },
+    "coordSource": "Olympic National Park Visitor Center, Port Angeles — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 4,
+    "stayRationale": "Three distinct ecosystems (coast, rainforest, mountains) are far apart and each deserve a day-plus."
+  },
+  {
+    "id": "pefo",
+    "parkCode": "pefo",
+    "fullName": "Petrified Forest National Park",
+    "states": [
+      "AZ"
+    ],
+    "routingCoord": {
+      "lat": 34.91,
+      "lng": -109.8069
+    },
+    "coordSource": "Painted Desert Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The park-road drive-through with overlooks fits comfortably in a day."
+  },
+  {
+    "id": "pinn",
+    "parkCode": "pinn",
+    "fullName": "Pinnacles National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 36.4906,
+      "lng": -121.1825
+    },
+    "coordSource": "Pinnacles Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The talus caves and rock formations are covered on a single day's hike."
+  },
+  {
+    "id": "redw",
+    "parkCode": "redw",
+    "fullName": "Redwood National and State Parks",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 41.5589,
+      "lng": -124.0836
+    },
+    "coordSource": "Thomas H. Kuchel Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Old-growth groves are spread along a long coastal stretch, warranting two days."
+  },
+  {
+    "id": "romo",
+    "parkCode": "romo",
+    "fullName": "Rocky Mountain National Park",
+    "states": [
+      "CO"
+    ],
+    "routingCoord": {
+      "lat": 40.3773,
+      "lng": -105.5217
+    },
+    "coordSource": "Beaver Meadows Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Trail Ridge Road, the Bear Lake corridor, and Wild Basin are each worth a day."
+  },
+  {
+    "id": "sagu",
+    "parkCode": "sagu",
+    "fullName": "Saguaro National Park",
+    "states": [
+      "AZ"
+    ],
+    "routingCoord": {
+      "lat": 32.178,
+      "lng": -110.7357
+    },
+    "coordSource": "Rincon Mountain Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "Two districts flank Tucson; a loop drive and short hike cover the highlights in a day."
+  },
+  {
+    "id": "seki",
+    "parkCode": "seki",
+    "fullName": "Sequoia National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 36.4864,
+      "lng": -118.8324
+    },
+    "coordSource": "Foothills Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Giant Forest, the General Sherman Tree, and Moro Rock fill roughly two days."
+  },
+  {
+    "id": "shen",
+    "parkCode": "shen",
+    "fullName": "Shenandoah National Park",
+    "states": [
+      "VA"
+    ],
+    "routingCoord": {
+      "lat": 38.9017,
+      "lng": -78.2019
+    },
+    "coordSource": "Dickey Ridge Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "Skyline Drive overlooks plus a signature hike (Old Rag or Dark Hollow Falls) fill two days."
+  },
+  {
+    "id": "thro",
+    "parkCode": "thro",
+    "fullName": "Theodore Roosevelt National Park",
+    "states": [
+      "ND"
+    ],
+    "routingCoord": {
+      "lat": 46.9769,
+      "lng": -103.4499
+    },
+    "coordSource": "South Unit Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The South Unit scenic loop and short trails fit a single day."
+  },
+  {
+    "id": "viis",
+    "parkCode": "viis",
+    "fullName": "Virgin Islands National Park",
+    "states": [
+      "VI"
+    ],
+    "routingCoord": {
+      "lat": 18.3419,
+      "lng": -64.7256
+    },
+    "coordSource": "Cruz Bay Visitor Center, St. John — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": false,
+    "recommendedStayDays": 2,
+    "stayRationale": "Trunk Bay snorkeling and the Reef Bay/Ram Head trails fill two beach-and-hike days.",
+    "notDrivableReason": "Located on St. John, US Virgin Islands — no bridge to the mainland; reached by ferry from St. Thomas, itself accessible only by air/sea."
+  },
+  {
+    "id": "voya",
+    "parkCode": "voya",
+    "fullName": "Voyageurs National Park",
+    "states": [
+      "MN"
+    ],
+    "routingCoord": {
+      "lat": 48.6008,
+      "lng": -93.1922
+    },
+    "coordSource": "Rainy Lake Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "A water-based park; a boat tour plus paddling fills two days."
+  },
+  {
+    "id": "whsa",
+    "parkCode": "whsa",
+    "fullName": "White Sands National Park",
+    "states": [
+      "NM"
+    ],
+    "routingCoord": {
+      "lat": 32.7791,
+      "lng": -106.1719
+    },
+    "coordSource": "White Sands Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "Dunes Drive and sunset over the gypsum dunes fit a single day."
+  },
+  {
+    "id": "wica",
+    "parkCode": "wica",
+    "fullName": "Wind Cave National Park",
+    "states": [
+      "SD"
+    ],
+    "routingCoord": {
+      "lat": 43.557,
+      "lng": -103.483
+    },
+    "coordSource": "Wind Cave Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 1,
+    "stayRationale": "The cave tour plus a short surface hike fits an easy day."
+  },
+  {
+    "id": "wrst",
+    "parkCode": "wrst",
+    "fullName": "Wrangell-St. Elias National Park and Preserve",
+    "states": [
+      "AK"
+    ],
+    "routingCoord": {
+      "lat": 61.9701,
+      "lng": -145.3268
+    },
+    "coordSource": "Copper Center Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "The largest US national park; the long gravel roads to McCarthy/Kennecott reward a multi-day trip."
+  },
+  {
+    "id": "yell",
+    "parkCode": "yell",
+    "fullName": "Yellowstone National Park",
+    "states": [
+      "WY",
+      "MT",
+      "ID"
+    ],
+    "routingCoord": {
+      "lat": 44.4605,
+      "lng": -110.8281
+    },
+    "coordSource": "Old Faithful Visitor Education Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 4,
+    "stayRationale": "The Grand Loop Road connects five distinct thermal/wildlife districts; the classic itinerary is 3-4 days."
+  },
+  {
+    "id": "yose",
+    "parkCode": "yose",
+    "fullName": "Yosemite National Park",
+    "states": [
+      "CA"
+    ],
+    "routingCoord": {
+      "lat": 37.8651,
+      "lng": -119.5383
+    },
+    "coordSource": "Yosemite Valley Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 3,
+    "stayRationale": "Yosemite Valley, Glacier Point, and Tuolumne Meadows are each worth a dedicated day."
+  },
+  {
+    "id": "zion",
+    "parkCode": "zion",
+    "fullName": "Zion National Park",
+    "states": [
+      "UT"
+    ],
+    "routingCoord": {
+      "lat": 37.1995,
+      "lng": -112.9871
+    },
+    "coordSource": "Zion Canyon Visitor Center — curated from established NPS visitor-center/entrance reference (nps.gov park unit page); not NPS-API-fetched",
+    "drivable": true,
+    "recommendedStayDays": 2,
+    "stayRationale": "The Zion Canyon shuttle route plus a signature hike (Angels Landing or Narrows) fill two days."
+  }
+]
