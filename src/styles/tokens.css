@@ -1,0 +1,130 @@
+/**
+ * Design tokens — Outbound (source of truth: DESIGN.md v1.0.0)
+ *
+ * Every custom property below is named and valued exactly per DESIGN.md's
+ * token tables (Color, Radius & Elevation, Motion, Map & Marker, Day-Marker
+ * Dot, Spacing). Do not invent new tokens or rename a DESIGN.md token here —
+ * if a value looks wrong, flag it to the UI Designer, do not silently change
+ * it (DESIGN.md § out-of-scope rule).
+ *
+ * Two documented deviations from a literal 1:1 table transcription (both
+ * additive, not value-altering — see this task's ui_packet token trace):
+ *   1. DESIGN.md's Park Marker table embeds a width+color pair in a single
+ *      "Value" cell for --marker-stroke-* / --marker-focus-ring (4 tokens),
+ *      unlike the sibling Day-Marker Dot table, which already splits
+ *      --dot-stroke-color / --dot-stroke-width into two literal tokens. For
+ *      CSS/SVG consumability this file mirrors that existing DESIGN.md
+ *      convention and splits each into -width/-color(/-offset) companions,
+ *      preserving the literal token name as a prefix.
+ *   2. --dot-dimmed-opacity operationalizes the Day-Marker Dot "Dimmed"
+ *      state prose ("render at 40% opacity") into a reusable value; it is
+ *      not itself a DESIGN.md table token.
+ */
+
+:root {
+  /* ---- Color Tokens (DESIGN.md § Color Tokens) ---- */
+  --color-primary: #1f4e3d;
+  --color-primary-hover: #163a2d;
+  --color-secondary: #a83f1e;
+  --color-secondary-hover: #832f16;
+  --color-accent-rust: #c1502e;
+  --color-accent-dusk: #4b4368;
+  --color-surface: #faf3e7;
+  --color-surface-elevated: #fffdf8;
+  --color-surface-sunken: #efe3ce;
+  --color-text: #2a2420;
+  --color-text-muted: #6b6055;
+  --color-text-inverse: #faf3e7;
+  --color-border: #ded0bb;
+  --color-success: #3f6832;
+  --color-warning: #8f5a0f;
+  --color-error: #9b2226;
+  --color-not-drivable: #a79b8c;
+
+  /* ---- Radius & Elevation Tokens (DESIGN.md § Radius & Elevation Tokens) ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --elevation-1: 0 1px 2px rgba(42, 36, 32, 0.08), 0 2px 6px rgba(42, 36, 32, 0.1);
+  --elevation-2: 0 4px 10px rgba(42, 36, 32, 0.14), 0 2px 4px rgba(42, 36, 32, 0.08);
+  --elevation-3: 0 12px 28px rgba(42, 36, 32, 0.18), 0 4px 8px rgba(42, 36, 32, 0.1);
+
+  /* ---- Spacing Scale (DESIGN.md § Spacing Scale, base unit 4px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Motion Tokens (DESIGN.md § Motion Tokens) ---- */
+  --motion-flyto-duration: 1400ms;
+  --motion-flyto-curve: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --motion-route-trace-duration: 900ms;
+  --motion-route-trace-curve: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-dot-stagger-delay: 90ms;
+  --motion-dot-enter-duration: 220ms;
+  --motion-dot-enter-curve: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --motion-card-enter-duration: 320ms;
+  --motion-card-exit-duration: 200ms;
+  --motion-card-curve: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Applied to every motion token above under prefers-reduced-motion below;
+     value itself satisfies DESIGN.md's "≤10ms" override ceiling. */
+  --motion-reduced-motion-override: 1ms;
+
+  /* ---- Map & Marker Tokens — Park Markers (DESIGN.md § Park Markers) ---- */
+  --marker-size-default: 16px;
+  --marker-size-selected: 24px;
+  --marker-color-drivable: var(--color-primary);
+  --marker-color-drivable-hover: var(--color-primary-hover);
+  --marker-color-selected: var(--color-secondary);
+  --marker-color-not-drivable: var(--color-not-drivable);
+  --marker-stroke-not-drivable-width: 1.5px;
+  --marker-stroke-not-drivable-color: var(--color-text-muted);
+  --marker-stroke-default-width: 2px;
+  --marker-stroke-default-color: var(--color-surface-elevated);
+  --marker-stroke-selected-width: 3px;
+  --marker-stroke-selected-color: var(--color-surface-elevated);
+  --marker-focus-ring-width: 2px;
+  --marker-focus-ring-color: var(--color-accent-dusk);
+  --marker-focus-ring-offset: 2px;
+
+  /* ---- Map & Marker Tokens — Day-Marker Dots (DESIGN.md § Day-Marker Dots) ---- */
+  --dot-size-sm: 8px;
+  --dot-size-md: 10px;
+  --dot-size-lg: 14px;
+  --dot-gap: var(--space-2);
+  --dot-color-drive: var(--color-accent-rust);
+  --dot-color-stay: var(--color-accent-dusk);
+  --dot-stroke-color: var(--color-surface-elevated);
+  --dot-stroke-width: 2px;
+  --dot-max-inline-count: 5;
+  /* Operationalizes the "Dimmed (backgrounded)" state prose — not a literal
+     DESIGN.md table token, see file header note 2. */
+  --dot-dimmed-opacity: 0.4;
+}
+
+/* DESIGN.md Constitution: "Respect prefers-reduced-motion. Every Motion
+   Token below collapses to near-instant... day-dot counts and route/stay
+   information must never depend on an animation actually playing to be
+   readable." */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-flyto-duration: var(--motion-reduced-motion-override);
+    --motion-flyto-curve: linear;
+    --motion-route-trace-duration: var(--motion-reduced-motion-override);
+    --motion-route-trace-curve: linear;
+    --motion-dot-stagger-delay: 0ms;
+    --motion-dot-enter-duration: var(--motion-reduced-motion-override);
+    --motion-dot-enter-curve: linear;
+    --motion-card-enter-duration: var(--motion-reduced-motion-override);
+    --motion-card-exit-duration: var(--motion-reduced-motion-override);
+    --motion-card-curve: linear;
+  }
+}

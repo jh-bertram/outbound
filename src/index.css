@@ -1,24 +1,64 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import './styles/tokens.css';
 
 @custom-variant dark (&:is(.dark *));
 
-/* Google Fonts loaded via index.html <link>; base body font wired here so
-   downstream tasks (fe-01 token stylesheet) don't have to re-declare it. */
+/* Base body font — references the --font-sans theme token below (Inter)
+   rather than re-declaring the font stack, so there is one source of
+   truth for the family list. */
 body {
   margin: 0;
-  font-family:
-    'Inter',
-    -apple-system,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-sans);
+  line-height: var(--line-height-body);
 }
 
+/* Tailwind v4 theme wiring — DESIGN.md Typography (fonts + type scale) and
+   Layout Breakpoints. These are static (no light/dark variance), so they
+   are declared directly rather than through the `inline` indirection used
+   below for the shadcn semantic palette. */
+@theme {
+  /* DESIGN.md Typography table has no literal `--`-prefixed token names
+     (prose labels only: "Display font family" etc.) — these three
+     identifiers are FE-chosen to wire Tailwind's font-family utilities
+     (font-sans / font-display / font-mono), not a rename of an existing
+     DESIGN.md token. Loaded via the Google Fonts <link> in index.html. */
+  --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.15;
+
+  /* DESIGN.md Typography § Derived type scale — exact px values so
+     text-xs..text-5xl utility classes match 1:1. */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+
+  /* DESIGN.md § Layout Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* shadcn/ui semantic theme variables — bridged to DESIGN.md tokens (see
+   src/styles/tokens.css) so every shadcn primitive (Button, Card, Input,
+   Dialog, ...) inherits the Pine/Rust/Dusk/Sand palette instead of the
+   stock neutral-gray defaults. Radius keys share DESIGN.md's exact token
+   names (--radius-sm/md/lg/xl/full map 1:1 to Tailwind's own radius
+   utility namespace), so rounded-lg/rounded-xl/etc. across the generated
+   src/components/ui/*.tsx files resolve to DESIGN.md values with no
+   further edits required there. */
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -50,83 +90,71 @@ body {
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  /* No DESIGN.md token above --radius-xl; retained calc'd off the base
+     shadcn --radius unit below so stock component templates that already
+     reference rounded-2xl/3xl/4xl (e.g. Badge) keep a sensible radius
+     rather than losing the utility class entirely. */
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --background: var(--color-surface);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface-elevated);
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-text-inverse);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-text-inverse);
+  /* shadcn's --muted/--accent are generic neutral-surface semantics with no
+     direct 1:1 DESIGN.md token (Dusk/Rust are reserved for deliberate
+     accent moments, not generic hover/recessed surfaces) — mapped to
+     --color-surface-sunken per its own DESIGN.md description ("recessed
+     areas... disabled fills"). Flagged for UI Designer review if a
+     stronger accent treatment is intended for menu/hover surfaces. */
+  --muted: var(--color-surface-sunken);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-surface-sunken);
+  --accent-foreground: var(--color-text);
+  --destructive: var(--color-error);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-accent-dusk);
+  /* Base radius unit — DESIGN.md-independent plumbing var, retained only
+     to drive the uncovered --radius-2xl/3xl/4xl calc above. */
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: var(--color-primary);
+  --chart-2: var(--color-secondary);
+  --chart-3: var(--color-accent-dusk);
+  --chart-4: var(--color-accent-rust);
+  --chart-5: var(--color-text-muted);
+  --sidebar: var(--color-surface);
+  --sidebar-foreground: var(--color-text);
+  --sidebar-primary: var(--color-primary);
+  --sidebar-primary-foreground: var(--color-text-inverse);
+  --sidebar-accent: var(--color-surface-sunken);
+  --sidebar-accent-foreground: var(--color-text);
+  --sidebar-border: var(--color-border);
+  --sidebar-ring: var(--color-accent-dusk);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+/* No .dark block: DESIGN.md Constitution scopes every Color Token to a
+   "light, warm basemap" assumption and explicitly requires this file's
+   Color Tokens to be "revisited explicitly" (not silently patched) if a
+   dark basemap is ever selected — dark mode is not an authorized surface
+   in this sprint. The @custom-variant above is left in place (harmless,
+   costs nothing) since Tailwind's dark: utility infrastructure references
+   it structurally, but no .dark palette is defined until DESIGN.md gains
+   one. */
 
 @layer base {
   * {
