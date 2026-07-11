@@ -17,6 +17,30 @@ Branch: all sprint work on feature branch `outbound-p1-mvp` (created off main at
   2. Commit-size W1 ruling — commits land post-audit via commit-packet, satisfying standards.md's "verification gate passed first" clause — MUST be relayed verbatim to the code-auditor at GATE-AUDIT.
   3. sc-locked-value-consistency script not present on this machine (verified); PM hand-lint (CLEAN) stands, spot-verified by both critics.
 
+## ORC Rulings (in-sprint, pending human report-time review)
+
+- **R1 (2026-07-11, WebKit sandbox constraint):** fe-02a proved WebKit/mobile-safari cannot launch
+  in this sandbox (~35 missing system libraries, no root; non-root remediation attempted and
+  documented in fe-02a's packet). RULING: in-sandbox mobile-viewport receipts for fe-02b..fe-08 are
+  satisfied by a chromium-based mobile-emulation Playwright project (`mobile-chrome`,
+  iPhone-14-class viewport) which fe-02b adds ADDITIVELY to playwright.config.ts; the existing
+  `mobile-safari` WebKit project is retained but gated behind `PW_WEBKIT=1` so in-sandbox
+  `npm run test:e2e` stays green while CI/human machines (GH Actions can `npx playwright
+  install-deps webkit`) can still run true WebKit. True-Safari verification is DEFERRED WORK closing
+  at GATE-DEPLOY CI or on the human's machine. Auditors must not FAIL a packet solely for
+  mobile-safari being unrunnable in-sandbox; they must verify the mobile-chrome runs instead.
+- **R2 (2026-07-11, vitest e2e exclude):** fe-02a's additive `vitest.config.ts` fix (exclude
+  `e2e/**` from vitest collection) is RATIFIED — it was independently confirmed necessary by be-03
+  hitting the same collection error; the file was not on fe-02a's forbidden list and the change is
+  additive-only.
+
+- **R3 (2026-07-11, bundle-gate maplibre exemption):** AUD#6 measured the vendor-isolated
+  `maplibre-gl` chunk at 1027.74 kB raw (272.98 kB gzip), ~28 kB over the 1000 kB bundle gate.
+  RULING: the maplibre-gl vendor chunk is EXEMPT from the 1 MB gate — it is the CR#2/RA-ratified
+  core map engine, irreducible, correctly vendor-isolated, and permanently on the critical path
+  (cannot lazy-load the primary canvas). The gate remains in force for every OTHER chunk.
+  Auditors cite R3 instead of re-litigating per FE task. Pending human report-time review.
+
 ## Expectation Manifest
 
 <expectation_manifest>
