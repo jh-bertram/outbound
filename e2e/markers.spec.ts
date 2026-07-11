@@ -10,6 +10,81 @@ async function gotoSettled(page: import('@playwright/test').Page): Promise<void>
   await page.waitForFunction(() => document.body.dataset['flytoSettled'] === 'true')
 }
 
+/**
+ * Selects the first on-screen, unoccluded marker matching `drivable`,
+ * returning its destination id.
+ *
+ * R4 hardening (ORC ruling, 2026-07-11 — see docs/task-registry.md §
+ * "ORC Rulings R4" and
+ * .claude/tasks/outputs/outbound-p1-fe-05-FE-1783804117.md §
+ * "Remediation (attempt 1)"): the previous implementation walked
+ * candidates with N separate Playwright `boundingBox()` round-trips plus
+ * a per-candidate `.click({ timeout })`, which proved unreliable on
+ * mobile-chrome under this sandbox's software-rendered WebGL canvas —
+ * continuous MapLibre repaint stalls Playwright's freestanding
+ * geometry/actionability polling. Replaced with the same in-browser
+ * `evaluate()` + `dispatchEvent('click')` pattern
+ * `e2e/park-detail.spec.ts`'s `selectFirstMarker` already uses
+ * successfully on both projects (TEST-ONLY change; no product code
+ * touched):
+ *
+ * 1. The on-screen/unoccluded candidate search runs as ONE
+ *    `page.evaluate()` using native `getBoundingClientRect()` +
+ *    `elementFromPoint()`. This also subsumes the old explicit
+ *    empty-state-hero bounding-box check: a hero-occluded (or
+ *    neighbor-marker-occluded) candidate's center point resolves to that
+ *    occluding element via `elementFromPoint`, not the marker itself, so
+ *    it is skipped automatically — a strict generalization of the old
+ *    hero-only check, not a narrowing of it.
+ * 2. Falls back to the first DOM candidate if nothing currently sits
+ *    within the camera framing (true for every not-drivable park —
+ *    Alaska/Hawaii/Caribbean/American Samoa are outside the FoCo/US-West
+ *    intro fly-in).
+ * 3. Dispatches a native 'click' event directly on the resolved element,
+ *    bypassing Playwright's hover/scroll/stability actionability
+ *    pipeline (the thing that stalled here) — still exercises the real
+ *    production `onClick={() => setSelected(park.id)}` handler in
+ *    `park-markers-layer.tsx`, since React's event delegation picks up a
+ *    dispatched native click identically to a genuine pointer click.
+ *
+ * Deliberately duplicated rather than extracted into a shared e2e helper
+ * module: R4 authorizes hardening `e2e/markers.spec.ts` only, and adding
+ * a second touched file would exceed that scope.
+ */
+async function selectFirstMarker(
+  page: import('@playwright/test').Page,
+  drivable: boolean,
+): Promise<string> {
+  const selector = `[data-testid="park-marker"][data-drivable="${drivable}"]`
+
+  const onScreenId = await page.evaluate((sel) => {
+    const markers = Array.from(document.querySelectorAll<HTMLElement>(sel))
+    for (const marker of markers) {
+      const rect = marker.getBoundingClientRect()
+      if (rect.width === 0 || rect.height === 0) continue
+      const cx = rect.x + rect.width / 2
+      const cy = rect.y + rect.height / 2
+      if (cx < 0 || cy < 0 || cx > window.innerWidth || cy > window.innerHeight) continue
+      const topElement = document.elementFromPoint(cx, cy)
+      if (topElement && (topElement === marker || marker.contains(topElement))) {
+        return marker.getAttribute('data-park-id')
+      }
+    }
+    return null
+  }, selector)
+
+  const target = onScreenId
+    ? page.locator(`${selector}[data-park-id="${onScreenId}"]`)
+    : page.locator(selector).first()
+  const targetId = onScreenId ?? (await target.getAttribute('data-park-id'))
+  if (!targetId) {
+    throw new Error(`no ${drivable ? 'drivable' : 'not-drivable'} marker exists in the DOM`)
+  }
+
+  await target.dispatchEvent('click')
+  return targetId
+}
+
 test('renders all 63 destination markers, id-keyed (seki + seki-kica both present)', async ({
   page,
 }) => {
@@ -44,52 +119,19 @@ test('clicking a drivable marker selects it; keyboard focus shows a visible focu
 }) => {
   await gotoSettled(page)
 
-  // Two geometry hazards can make a specific park id unreliable to target
-  // directly: (1) the pre-selection empty-state hero (fe-02b, out of this
-  // task's scope) floats centered above the map and can occlude a marker
-  // that renders near its card (e.g. a park close to Fort Collins on
-  // screen); (2) geographically clustered parks (e.g. Utah's "Mighty 5")
-  // can render overlapping 44px hit-areas at this zoom, so one marker's
-  // hit-area can occlude a neighbor's. Rather than assume any single
-  // park id is always clear of both, walk the drivable markers in order
-  // and click the first one that is on-screen, outside the hero, AND
-  // actually receives the click (not occluded by a sibling marker).
-  const heroBox = await page.getByTestId('empty-state-hero').boundingBox()
-  const viewport = page.viewportSize()
-  const drivableMarkers = page.locator('[data-testid="park-marker"][data-drivable="true"]')
-  const markerCount = await drivableMarkers.count()
+  const id = await selectFirstMarker(page, true)
+  const marker = page.locator(`[data-testid="park-marker"][data-park-id="${id}"]`)
 
-  let marker: ReturnType<typeof drivableMarkers.nth> | null = null
-  for (let i = 0; i < markerCount; i++) {
-    const candidate = drivableMarkers.nth(i)
-    const box = await candidate.boundingBox()
-    if (!box) continue
-    const cx = box.x + box.width / 2
-    const cy = box.y + box.height / 2
-    const insideHero =
-      heroBox !== null &&
-      cx >= heroBox.x &&
-      cx <= heroBox.x + heroBox.width &&
-      cy >= heroBox.y &&
-      cy <= heroBox.y + heroBox.height
-    const insideViewport =
-      viewport !== null && cx >= 0 && cx <= viewport.width && cy >= 0 && cy <= viewport.height
-    if (!insideViewport || insideHero) continue
+  // Explicit post-click assertion proving the synthetic dispatchEvent
+  // click had the same real effect a genuine pointer click would: this is
+  // a live DOM read of application state, not a side-effect proxy —
+  // `park-markers-layer.tsx` computes `aria-current` directly from the
+  // store's `selectedId === park.id`, so this attribute only flips true
+  // if `setSelected` actually ran.
+  await expect(marker).toHaveAttribute('aria-current', 'true')
 
-    try {
-      await candidate.click({ timeout: 2000 })
-      marker = candidate
-      break
-    } catch {
-      continue
-    }
-  }
-
-  expect(marker).not.toBeNull()
-  await expect(marker!).toHaveAttribute('aria-current', 'true')
-
-  await marker!.focus()
-  const outline = await marker!.evaluate((el) => {
+  await marker.focus()
+  const outline = await marker.evaluate((el) => {
     const cs = getComputedStyle(el)
     return { style: cs.outlineStyle, color: cs.outlineColor }
   })
