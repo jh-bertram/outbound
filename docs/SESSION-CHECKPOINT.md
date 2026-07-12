@@ -2,77 +2,133 @@
 type: project-doc
 ---
 
-# Session Checkpoint
+# Session Checkpoint — Sprint Close
 
 **Project:** outbound
-**Updated:** 2026-07-11 22:06:48 UTC (auto-rebuilt by session-end-checkpoint hook)
+**Sprint:** outbound-p1-mvp
+**Written:** 2026-07-12
+**Session closed after:** Complete MVP execution — 14/14 tasks audited PASS, committed, pushed; REQVAL 18/19 COVERED + 1 PARTIAL (human-reserved judgment); live deployment active.
 
-## ⚠ STALE — UNCOMMITTED DEBT PRESENT
-
-Tracked-modified files detected at session-end checkpoint rebuild. This checkpoint
-reflects the CURRENT working tree state but the listed files have not been committed.
-Do not treat this checkpoint as authoritative for sprint state until debt is resolved.
-
-**Uncommitted tracked paths (debt):**
-  - `docs/agent-logs/AUD/latest.md`
-  - `docs/agent-logs/FE/latest.md`
-  - `docs/events/agent-events-2026-07-11.jsonl`
-  - `src/components/park-detail-panel.tsx`
-
-Ceremony-class files (chore(orchestration) commit class per
-`.claude/skills/commit-packet/SKILL.md §Two-Commit Pattern`) should be committed
-before this checkpoint is treated as fresh. Non-ceremony files must NOT be
-auto-committed by this hook — manual ORC commit-packet is required.
-
-## Agent Log Summary
-*Scanned at 2026-07-11T22:06:48.137736+00:00*
-
-### CLOSED (24 task(s) — Stage-3 COMPLETE or drained)
-
-  - `outbound-p1-be-02` (AUD) — `docs/agent-logs/AUD/outbound-p1-be-02.md`
-  - `outbound-p1-be-03` (AUD) — `docs/agent-logs/AUD/outbound-p1-be-03.md`
-  - `outbound-p1-be-05` (AUD) — `docs/agent-logs/AUD/outbound-p1-be-05.md`
-  - `outbound-p1-fe-01` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-01.md`
-  - `outbound-p1-fe-02a` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-02a.md`
-  - `outbound-p1-fe-02b` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-02b.md`
-  - `outbound-p1-fe-03` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-03.md`
-  - `outbound-p1-fe-04` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-04.md`
-  - `outbound-p1-fe-05` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-05.md`
-  - `outbound-p1-be-01` (BE) — `docs/agent-logs/BE/outbound-p1-be-01.md`
-  - `outbound-p1-be-02` (BE) — `docs/agent-logs/BE/outbound-p1-be-02.md`
-  - `outbound-p1-be-03` (BE) — `docs/agent-logs/BE/outbound-p1-be-03.md`
-  - `outbound-p1-be-04` (BE) — `docs/agent-logs/BE/outbound-p1-be-04.md`
-  - `outbound-p1-be-05` (BE) — `docs/agent-logs/BE/outbound-p1-be-05.md`
-  - `outbound-p1-mvp-amend` (CR) — `docs/agent-logs/CR/outbound-p1-mvp-amend.md`
-  - `outbound-p1-mvp` (CR) — `docs/agent-logs/CR/outbound-p1-mvp.md`
-  - `outbound-p1-fe-01` (FE) — `docs/agent-logs/FE/outbound-p1-fe-01.md`
-  - `outbound-p1-fe-02a` (FE) — `docs/agent-logs/FE/outbound-p1-fe-02a.md`
-  - `outbound-p1-fe-02b` (FE) — `docs/agent-logs/FE/outbound-p1-fe-02b.md`
-  - `outbound-p1-fe-03` (FE) — `docs/agent-logs/FE/outbound-p1-fe-03.md`
-  - `outbound-p1-fe-04` (FE) — `docs/agent-logs/FE/outbound-p1-fe-04.md`
-  - `outbound-p1-fe-05` (FE) — `docs/agent-logs/FE/outbound-p1-fe-05.md`
-  - `outbound-p1-mvp` (PM) — `docs/agent-logs/PM/outbound-p1-mvp.md`
-  - `outbound-p1-mvp` (UI) — `docs/agent-logs/UI/outbound-p1-mvp.md`
-
-## Event Log Tail (last 10)
-*Source: agent-events-2026-07-11.jsonl*
-
-```
-{"seq":53,"ts":"2026-07-11T20:30:45Z","ev":"AUDIT_PASS","task_id":"outbound-p1-fe-02b","agent_id":"AUD#9","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-fe-02b-AUD-1783801518.md"]}
-{"seq":54,"ts":"2026-07-11T20:31:36Z","ev":"SPAWN","task_id":"outbound-p1-fe-04","agent_id":"FE#5","parent_id":"ORC#0","edge_label":"task_packet","expected_output":".claude/tasks/outputs/outbound-p1-fe-04-FE-1783801896.md","note":"Wave 3: 63 park markers, drivable/not-drivable distinction, a11y, markers.spec."}
-{"seq":55,"ts":"2026-07-11T20:53:19Z","ev":"COMPLETE","task_id":"outbound-p1-fe-04","agent_id":"FE#5","parent_id":"ORC#0","edge_label":"ui_packet","output_files":[".claude/tasks/outputs/outbound-p1-fe-04-FE-1783801896.md"],"auto_logged":true}
-{"seq":56,"ts":"2026-07-11T20:53:30Z","ev":"SPAWN","task_id":"outbound-p1-fe-04","agent_id":"AUD#10","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-fe-04-AUD-1783803210.md","note":"Wave 3 GATE-AUDIT; live playwright forced; verify pre-existing-flake claim."}
-{"seq":57,"ts":"2026-07-11T21:07:48Z","ev":"AUDIT_PASS","task_id":"outbound-p1-fe-04","agent_id":"AUD#10","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-fe-04-AUD-1783803210.md"]}
-{"seq":58,"ts":"2026-07-11T21:08:37Z","ev":"SPAWN","task_id":"outbound-p1-fe-05","agent_id":"FE#6","parent_id":"ORC#0","edge_label":"task_packet","expected_output":".claude/tasks/outputs/outbound-p1-fe-05-FE-1783804117.md","note":"Wave 4a (serialized vs fe-06 to avoid e2e port/WebGL contention): park detail panel."}
-{"seq":59,"ts":"2026-07-11T21:55:22Z","ev":"COMPLETE","task_id":"outbound-p1-fe-05","agent_id":"FE#6","parent_id":"ORC#0","edge_label":"ui_packet","output_files":[".claude/tasks/outputs/outbound-p1-fe-05-FE-1783804117.md"],"auto_logged":true}
-{"seq":60,"ts":"2026-07-11T21:55:54Z","ev":"SPAWN","task_id":"outbound-p1-fe-05","agent_id":"AUD#11","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-fe-05-AUD-1783806954.md","note":"Wave 4a GATE-AUDIT; must adjudicate 3 foreign-file e2e failures (baseline vs induced) + nps-content bundle impact."}
-{"seq":61,"ts":"2026-07-11T22:04:59Z","ev":"AUDIT_FAIL","task_id":"outbound-p1-fe-05","agent_id":"AUD#11","parent_id":"ORC#0","edge_label":"audit_review FAIL","output_files":[".claude/tasks/outputs/outbound-p1-fe-05-AUD-1783806954.md"],"reason":"QA FAIL: fe-05 nps-content.json eager import inflates non-maplibre entry chunk 341KB->1193KB (>1MB gate, R3 maplibre-only) and induces markers.spec.ts:42 failures (8/8 green at baseline)"}
-{"seq":62,"ts":"2026-07-11T22:05:45Z","ev":"REMEDIATION_REQUEST","task_id":"outbound-p1-fe-05","agent_id":"FE#6","parent_id":"ORC#0","edge_label":"audit FAIL attempt 1/3","note":"AUD#11 QA FAIL: eager import of 723KB nps-content.json -> entry chunk 341kB->1193kB (non-exempt >1MB) + induced markers.spec regression via page-load bloat. Single fix: keep JSON out of entry chunk (dynamic import / manualChunks / static-asset fetch), then full suite --workers=1 green. Routed back to FE#6 via SendMessage (context preserved)."}
-```
+**HEAD:** beba476 (all 14 durability commits landed post-audit; Pages auto-deploy at live URL)
 
 ---
 
-> This checkpoint is auto-rebuilt by `session-end-checkpoint.sh` on every
-> main-session Stop. For authoritative sprint state, see the prior human-written
-> sections below (retained on first write; not overwritten by this hook).
+## Current State
 
+Sprint **CLOSED** with all intended outcomes delivered:
+
+- **Outcome:** National-park road-trip explorer (Outbound) MVP shipped and live.
+- **Scope:** 14 packets across waves (scaffold → design+data → map shell → park detail → trip builder → itinerary + validation).
+- **Quality:** All audits PASS. 52 e2e tests pass / 8 skipped / 0 failed. Requirements coverage 18/19 (1 PARTIAL is human-visual judgment, not code gap).
+- **Deployment:** Live at https://jh-bertram.github.io/outbound/ (HTTP 200, responsive, all features active).
+- **Governance:** Feature branch pushed at human opt-in (no main, no force; guarded-push enforced). Commits durable post-audit via commit-packet per standards.md.
+
+---
+
+## What Has Shipped (cumulative)
+
+- **Full-screen animated map** (maplibre-gl, Liberty style + Terrarium hillshade) with globe intro and Fort Collins fly-in settle.
+- **All 63 US national parks** rendered as markers (drivable vs not-drivable visually distinct by fill+ring+glyph; keyboard-navigable; ≥44px touch targets).
+- **Park detail panel** (animated fly-to on selection, photo-first card, drive hours/days, recommended stay days, campground link-outs, mobile bottom-sheet peek/expand).
+- **Animated route visualization** (progressive line-gradient trace, drive/stay day dots with stagger animation, >5-day leg warning pill, reduced-motion final state).
+- **Trip builder** (select parks, chain them, see cumulative day count, get nearby suggestions with day costs, remove parks with confirm).
+- **Day-by-day itinerary** (explicit return-leg row, grand total days, >3-day legs flagged warning color, would-add-N-days suggestions).
+- **Design system** (17 color tokens, 8 radius/elevation tokens, all sourced from DESIGN.md, CSS custom props, reduced-motion overrides, Fraunces typography).
+- **Static data foundation** (parks.json 63 destinations, drive-matrix.json with seki + seki-kica distinct nodes, nps-content.json 62 entries covering all 63, all loaded + validated via Zod).
+- **E2E coverage** (52 passing tests across desktop-chrome + mobile-chrome, mapped to all 7 major screens + interaction flows).
+
+---
+
+## Open Items & Deferrals
+
+### R-011: Human Visual Pass (OPEN GATE — no code gap)
+
+The single PARTIAL requirement (R-011, "visually appealing FIRST"). All animation mechanics are implemented and DOM-verified (globe intro, fly-to settle, progressive route trace, dot stagger, reduced-motion overrides). Auditor screenshot reviews on fe-02b/fe-06/fe-07/fe-08 confirm implementation.
+
+**What remains:** Human viewing pass at the live URL (desktop + human's own phone) to confirm motion *smoothness* and aesthetic appeal — this is reserved to the human's judgment and cannot be proven from static evidence. No code gap identified; no implementing-agent work indicated.
+
+**Timing:** GATE-DEPLOY step 4.5 (after sprint close, before formal sign-off).
+
+### Rulings Pending Human Report-Time Review
+
+Four in-sprint ORC rulings documented in docs/task-registry.md § ORC Rulings; all are policy/context decisions, not code gaps:
+
+1. **R1 (WebKit Sandbox):** Mobile-chrome project satisfies in-repo mobile receipts; true-Safari deferred to CI/human.
+2. **R2 (vitest e2e-exclude):** Additive fix ratified; both fe-02a + be-03 independently confirmed necessary.
+3. **R3 (maplibre Exemption):** maplibre-gl vendor chunk exempt from 1 MB bundle gate (irreducible core engine).
+4. **R4 (markers.spec Hardening):** Test-only helper refactored; product code untouched; a11y assertions remain.
+
+Evidence: docs/task-registry.md + .claude/tasks/outputs/ audit reports for each ruling.
+
+### Minor Deferrals (to next sprint or post-deploy)
+
+1. **true-WebKit verification** — R1 environment-blocked in sandbox; deferred to CI/human machine per ruling.
+2. **Coords spot-check FOCO→Grca** — AUD#8 WARNING: live fetch measures ~20% under expected. Low-priority; data team follow-up.
+3. **flytoSettled under reducedMotion emulation** — fe-02b owner noted; context-dependent behavior fine-tuning.
+4. **SubagentStop hook filename mis-key** — gander improvement inbox (record-only from this project; not a sprint gap).
+
+---
+
+## Next Sprint Feature Plan
+
+**P4 — Polish & Scale** (proposed next phase; subject to human prioritization):
+
+- Animation fine-tuning pass (motion token review, easing review).
+- Photo carousel/lightbox in detail panel (instead of single photo).
+- Trip persistence/export (localStorage or URL encoding).
+- Accessibility audit (WCAG full pass + screen-reader testing on real device).
+- Performance optimization (code splitting, asset optimization).
+- Marketing page + about/help modals.
+
+---
+
+## Branch & Deployment State
+
+| Item | Status |
+|------|--------|
+| Branch | `outbound-p1-mvp` (pushed to GitHub origin) |
+| Main | Untouched; guarded-push enforced no-main rule |
+| Force-push | Impossible (guarded-push hook + Layer-1 guard) |
+| Pages Deploy | Auto-triggered at final push; **LIVE at https://jh-bertram.github.io/outbound/** |
+| Base | 9c29919 (2026-07-11T00:11:24Z, genesis bootstrap) |
+| HEAD | beba476 (2026-07-12T00:59:42Z, fe-08 COMPLETE; all audits+commits durable) |
+| Push Opt-in | Granted (seq 65 PUSH_OPTIN event, 2026-07-11T22:45:25Z) |
+
+---
+
+## Test & Audit Summary
+
+**e2e Suite (Final Receipt — AUD#15):**
+- 52 passed / 8 skipped / 0 failed (Playwright full suite, --workers=1)
+- Both desktop-chrome + mobile-chrome green
+- All 7 specs green (map-shell, markers, day-dots, park-detail, trip-builder, itinerary, plus screenshot suites)
+
+**Audits:** 14/14 PASS (one remediation loop: fe-05 AUDIT_FAIL → FE#6 remediation → AUD#12 PASS)
+
+**Requirements:** 18/19 COVERED, 1 PARTIAL (R-011, human-visual, no code gap)
+
+---
+
+## Key Evidence Paths
+
+| Item | Path |
+|------|------|
+| Sprint Log | docs/project_log.md (this session's entry) |
+| Task Registry | docs/task-registry.md (CR#1/CR#2, ORC rulings, expectation manifest) |
+| REQVAL Report | .claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md (18/19 breakdown) |
+| Event Log (July 11) | docs/events/agent-events-2026-07-11.jsonl (seq 1–73) |
+| Event Log (July 12) | docs/events/agent-events-2026-07-12.jsonl (seq 1–12, final RV#1 + AR#1 SPAWN) |
+| All Task Outputs | .claude/tasks/outputs/ (task-packet outputs + audit reports) |
+| Live Site | https://jh-bertram.github.io/outbound/ |
+
+---
+
+## Session Notes
+
+- Session crash recovered mid-work (seq 15 RESUME); no checkpoint existed; state rebuilt from task-registry + event log. Partial be-01 working tree retained; re-dispatch succeeded.
+- SubagentStop hook filename-matching bug noted (seq 17 — mismatched amend-PM in brief during resume); hook fired but packet recovered from disk. Logged to gander improvement inbox.
+- fe-05 audit loop (FAIL → remediation → PASS) is the pedagogically valuable artifact — demonstrates the team's remediation discipline and dynamic-import problem-solving.
+
+---
+
+> **For the human:** R-011 visual pass is the only remaining gate. View the live site (desktop + mobile) at your convenience to confirm motion smoothness and visual appeal. No code gaps; estimated <5 min review. After that pass, the sprint is formally closed and ready for next-phase planning.
