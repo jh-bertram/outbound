@@ -9,6 +9,7 @@ import { DayDotCluster } from './day-dot-cluster'
 import { parks, type Park } from '@/data/parks'
 import { driveMatrix } from '@/data/drive-matrix'
 import { driveDays, buildItinerary, totalTripDays, FOCO_ID, type ItineraryItem } from '@/lib/trip-math'
+import { computeNearbySuggestions, NEARBY_MAX_HOURS, type NearbySuggestion } from '@/lib/nearby-suggestions'
 import { useOutboundStore } from '@/lib/store'
 
 /**
@@ -21,6 +22,17 @@ import { useOutboundStore } from '@/lib/store'
  * through fe-03's store actions (`addPark`/`removePark`) — this file holds
  * NO local chain state, and all day-cost math goes through fe-03's
  * `driveDays`/`buildItinerary`/`totalTripDays` — never a local sum.
+ *
+ * REMEDIATION (outbound-p1-fe-08, sanctioned single-exception edit): the
+ * nearby-suggestion computation (`computeNearbySuggestions` + its
+ * `NearbySuggestion` type + `NEARBY_MAX_HOURS`/`NEARBY_SUGGESTION_LIMIT`
+ * constants) moved VERBATIM to `src/lib/nearby-suggestions.ts` so
+ * itinerary-panel.tsx (fe-08, "would add N days" suggestions) can reuse
+ * the exact same logic instead of forking it — fe-08's task packet
+ * explicitly requires this reuse and the ORC brief carved out this file as
+ * "the sanctioned fe-07 reuse path," the one exception to fe-08's
+ * otherwise-solo file scope. No behavior change: same function body, same
+ * constants, same call sites below.
  */
 
 // DESIGN.md § Layout Breakpoints — md = 768px, same split fe-05's detail
@@ -28,12 +40,6 @@ import { useOutboundStore } from '@/lib/store'
 // park-detail-panel.tsx exports nothing (each fe-02a slot is a
 // self-contained file per the composition-root anti-conflict pattern).
 const MD_BREAKPOINT_QUERY = '(min-width: 768px)'
-
-// Packet's own example ("filter to a plausible chaining radius (e.g. ≤ 12
-// h)"): a documented judgment call, not a DESIGN.md token — no nearby-
-// suggestion-radius token exists in DESIGN.md's tables.
-const NEARBY_MAX_HOURS = 12
-const NEARBY_SUGGESTION_LIMIT = 5
 
 // motion/react's `transition` prop takes numeric seconds and an array-form
 // cubic-bezier, not a CSS var() string — mirrors tokens.css
@@ -44,11 +50,6 @@ const PANEL_CURVE = cubicBezier(0.16, 1, 0.3, 1) // --motion-card-curve
 
 const PARKS_BY_ID = new Map<string, Park>(parks.map((park) => [park.id, park]))
 
-interface NearbySuggestion {
-  park: Park
-  hours: number
-}
-
 /** One row per drive leg, paired with the stay days at its destination (if any) — the
  * chain-display unit this panel renders. Derived from fe-03's `buildItinerary` output,
  * never recomputed independently. */
@@ -58,25 +59,6 @@ interface ChainRow {
   driveHours: number
   driveDays: number
   stayDays: number | undefined
-}
-
-/** From the currently-selected (or last-in-chain) destination, the nearest not-yet-chained
- * DRIVABLE destinations within `NEARBY_MAX_HOURS`, sorted nearest-first. Not-drivable
- * destinations are excluded by the `park.drivable` filter (they are also absent from
- * `driveMatrix` rows entirely, be-04 — excluded twice over, belt and suspenders). */
-function computeNearbySuggestions(anchorId: string, tripChain: string[]): NearbySuggestion[] {
-  const row = driveMatrix.hours[anchorId]
-  if (!row) return []
-
-  const candidates: NearbySuggestion[] = []
-  for (const park of parks) {
-    if (!park.drivable || park.id === anchorId || tripChain.includes(park.id)) continue
-    const hours = row[park.id]
-    if (hours === undefined || hours > NEARBY_MAX_HOURS) continue
-    candidates.push({ park, hours })
-  }
-
-  return candidates.sort((a, b) => a.hours - b.hours).slice(0, NEARBY_SUGGESTION_LIMIT)
 }
 
 /** One `ChainRow` per drive leg in `itinerary` (fe-03's `buildItinerary` output, return leg
