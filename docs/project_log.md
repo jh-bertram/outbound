@@ -275,3 +275,89 @@ Session Notes:
   </retention_keys>
   <commit_status>complete: 22158d4 (post-amendment, ceremony c5d3d7b; Pages deploy SUCCESS; hero-morph amendment integrated; R-011 COVERED)</commit_status>
 </archive_entry>
+
+<archive_entry>
+  <timestamp>2026-07-12T02:56:23Z</timestamp>
+  <task_id>outbound-p1-mvp-postmortem</task_id>
+  <event_type>POST_MORTEM</event_type>
+  <rationale>
+Post-mortem completed for outbound-p1-mvp sprint, document written at docs/after-actions/outbound-p1-mvp.md.
+
+**Execution Summary:**
+9.5 hour wall-clock sprint (2026-07-11T17:04Z SPAWN through 2026-07-12T02:37Z AR#2 COMPLETE, minus 45 min crash-recovery window 18:09–18:55Z). 15 implementing tasks (14 core + 1 post-close amendment), 16 audit gates (AUD#1–16), first-pass rate 14/15 (93%). One remediation cycle (fe-05 bundle-induced regression caught by AUD#11 stash-baseline A/B experiment).
+
+**Key Findings — Protocol Gaps (§6, G1–G8):**
+- **G1 — Mid-sprint SESSION-CHECKPOINT:** Checkpoints written only at sprint close; 18:09Z crash landed unchecked. Proposed: wave-boundary checkpoint write post-AUDIT_PASS via hook/script, limiting staleness to one wave. Route to HR.
+- **G2 — SubagentStop hook filename mis-key:** Hook regex matches FIRST `{task}-{CODE}-{digits}.md` in brief; briefs mentioning amend-PM caused 5 wave-1 manual COMPLETE backfills. Proposed: key on `## Output Path` block (or last match); pre-register concrete filenames in ORC dispatch-task. Route to HR (hook edit) + agent specs.
+- **G3 — Background SendMessage resume for remediation:** FE#6 SendMessage-resume backgrounded → Bash auto-denied. Proposed: remediation defaults to fresh FOREGROUND spawn; SendMessage reserved for read-only. Route to orchestrator.md.
+- **G4 — FE self-verification lacks baseline control:** FE#6 claimed induced regression "pre-existing" from non-controlled isolation run. Proposed: foreign-file pre-existing claim requires stashed baseline A/B receipt. Route to frontend.md + standards.md (evidence rule).
+- **G5 — Env preflight blind to browser-engine availability:** WebKit engine needs ~35 root-only libraries; discovered mid-task (fe-02a). Proposed: extend env-preflight or capability-preflight with browser-engine launch check for Playwright sprints. Route to HR.
+- **G6 — WebGL parallel-worker contention discovered, not declared:** --workers=1 became authoritative e2e gate mid-sprint (R4 spec hardening traces partly to it). Proposed: encode as sandboxed-environment convention in project-conventions + FE packet template. Route to HR.
+- **G7 — ORC brief provenance failure:** be-02 brief claimed PM file "embeds destination table verbatim" (false, hand-curated). Proposed: re-affirm provenance tags in orchestrator.md resume path; PreToolUse hook warns when brief asserts file contents without tag. Route to orchestrator.md + hook.
+- **G8 — Census scope gap (3rd consecutive reflect):** census.py scans gander/studio/broadn only; outbound (now full delivered sprint, ~98 events) invisible. Proposed: parameterize census.py to scan ~/projects/*/docs/events/ or accept explicit roster. Route to HR.
+
+**Key Findings — QA & Audit (§4–5):**
+- Sprint's only AUDIT_FAIL (fe-05, AUD#11 22:04:59Z) was highest-value audit action: stash-baseline A/B controlled experiment (byte-identical spec file, only variable = fe-05's diff; 8/8 green stashed vs 2/8 applied) refuted confident "pre-existing flake" attribution and proved induced regression with mechanism (entry chunk bloat → page-load slowdown). Remediation converged in one cycle (FE#6 R4 continuation).
+- 14/15 implementing agents achieved first-pass rate; FE#6 sole failure caused by misattributed regression (no process gap in implementation, but a process gap in FE self-verification per G4).
+- Zero post-delivery bugs. Deferred residuals (dynamic-import stale-tab edge, WebKit CI/human, coords spot-check, deselect affordance) are non-blocking.
+
+**ORC Rulings (pending human ratification at reflect):**
+R1 (WebKit sandbox → mobile-chrome project, PW_WEBKIT gate), R2 (vitest e2e-exclude ratified), R3 (maplibre vendor chunk exempt from 1 MB gate), R4 (markers.spec test-only hardening authorized). All recorded in docs/task-registry.md; no code gaps; decision authority on ratification timing rests with human per convention.
+
+**Evidence Path:**
+- Primary post-mortem: docs/after-actions/outbound-p1-mvp.md (full detail, 337 lines)
+- Protocol gaps detailed: §6, lines 170–183
+- QA analysis: §4, lines 120–144
+- Agent performance: §5, lines 148–161
+- Skill analysis: §8, lines 240–298
+- Delta proposals: §9, lines 302–314
+- Progression ledger: §7b, lines 216–236 (JSONL payload)
+  </rationale>
+  <dependencies>
+docs/after-actions/outbound-p1-mvp.md — canonical post-mortem source (AA#1 output, seq 26, 2026-07-12T02:47:37Z)
+docs/project_log.md — sprint TASK_COMPLETE entries (AR#1 seq 12, AR#2 seq 23) provide context for post-mortem findings
+docs/task-registry.md — ORC rulings R1–R4 recorded with rationale (evidence path for delta proposals §9)
+  </dependencies>
+  <retention_keys>
+Sprint: outbound-p1-mvp
+Postmortem: docs/after-actions/outbound-p1-mvp.md (337 lines; complete forensics + skill analysis + eval gap + connectivity findings)
+
+Protocol Gaps (§6):
+  G1: mid-sprint SESSION-CHECKPOINT (proposed: wave-boundary checkpoint write)
+  G2: SubagentStop hook filename mis-key (proposed: key on Output Path block; concrete filenames)
+  G3: background SendMessage-resume for remediation (proposed: fresh FOREGROUND spawn)
+  G4: FE self-verification lacks baseline control (proposed: stash A/B receipt requirement)
+  G5: env-preflight blind to browser-engine availability (proposed: extend to Playwright engine check)
+  G6: WebGL worker contention discovered not declared (proposed: encode --workers=1 as convention)
+  G7: ORC brief provenance failure (proposed: re-affirm tags in resume path; hook warning)
+  G8: census scope gap 3rd consecutive (proposed: parameterize census.py project list)
+
+Audit Findings (§4–5):
+  Sole AUDIT_FAIL: fe-05 induced regression (AUD#11 stash-baseline A/B experiment)
+  First-pass rate: 14/15 (93%)
+  Zero post-delivery bugs
+  Deferred residuals: dynamic-import stale-tab edge, WebKit CI/human, coords spot-check, P4 deselect
+
+ORC Rulings (pending human ratification):
+  R1: WebKit sandbox → mobile-chrome project; PW_WEBKIT gate; true-Safari deferred
+  R2: vitest e2e-exclude fix ratified (corroborated by be-03)
+  R3: maplibre vendor chunk (1027.74 kB) exempt from 1 MB gate
+  R4: markers.spec test-only hardening authorized; product code untouched; a11y assertions remain
+  Evidence: docs/task-registry.md § ORC Rulings
+
+Skill Analysis (§8):
+  17 skills logged (17 rows §8a)
+  0 obsolescence candidates
+  3 content-quality candidates: resume-project (no-checkpoint branch), dispatch-task/assign-agents (placeholder ambiguity), commit-packet (over-specified for high-frequency waves)
+  3 new skill candidates: browser-engine-preflight (LOW effort), baseline-bisect (LOW–MEDIUM), concrete-filename pre-registration (fold into log-event/assign-agents)
+  3 drift candidates: log-event/SubagentStop hook coupling, generate-design (direct authorship vs. skill), env-preflight (Playwright engine check)
+  Hand-off to hone: 17 skills, 3 quality, 3 new, 3 drift rows ready for hone input
+
+Delta Proposals (§9):
+  6 proposals targeting task-registry.md, standards.md, census.py, CLAUDE.md observability, project-conventions.md
+  2 HIGH priority (R1–R4 ratification, bundle-gate rule)
+  4 MEDIUM priority (evidence rule, census scope, Output Path convention, project conventions)
+  All with human ratification path per improvement-inbox-protocol
+  </retention_keys>
+  <commit_status>pending — post-mortem documentation complete; progression-ledger appended; protocol gaps/proposals logged for improve cadence</commit_status>
+</archive_entry>

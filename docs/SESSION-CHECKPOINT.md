@@ -5,24 +5,10 @@ type: project-doc
 # Session Checkpoint
 
 **Project:** outbound
-**Updated:** 2026-07-12 02:29:45 UTC (auto-rebuilt by session-end-checkpoint hook)
-
-## ⚠ STALE — UNCOMMITTED DEBT PRESENT
-
-Tracked-modified files detected at session-end checkpoint rebuild. This checkpoint
-reflects the CURRENT working tree state but the listed files have not been committed.
-Do not treat this checkpoint as authoritative for sprint state until debt is resolved.
-
-**Uncommitted tracked paths (debt):**
-  - `docs/events/agent-events-2026-07-12.jsonl`
-
-Ceremony-class files (chore(orchestration) commit class per
-`.claude/skills/commit-packet/SKILL.md §Two-Commit Pattern`) should be committed
-before this checkpoint is treated as fresh. Non-ceremony files must NOT be
-auto-committed by this hook — manual ORC commit-packet is required.
+**Updated:** 2026-07-12 02:37:11 UTC (auto-rebuilt by session-end-checkpoint hook)
 
 ## Agent Log Summary
-*Scanned at 2026-07-12T02:29:45.293504+00:00*
+*Scanned at 2026-07-12T02:37:11.736872+00:00*
 
 ### CLOSED (32 task(s) — Stage-3 COMPLETE or drained)
 
@@ -63,9 +49,6 @@ auto-committed by this hook — manual ORC commit-packet is required.
 *Source: agent-events-2026-07-12.jsonl*
 
 ```
-{"seq":11,"ts":"2026-07-12T01:31:43Z","ev":"REQVAL_PARTIAL","task_id":"outbound-p1-mvp","agent_id":"RV#1","parent_id":"ORC#0","edge_label":"requirements_coverage_report","output_files":[".claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md"],"note":"ORC backfill (hook missed RV terminal). Mode B validator: 18/19 COVERED, 1 PARTIAL (R-011 REQUIRES_HUMAN_VISUAL - human viewing pass of live app at Step 4.5; not a code gap). Sprint close blocks only on the human gate."}
-{"seq":12,"ts":"2026-07-12T01:31:53Z","ev":"SPAWN","task_id":"outbound-p1-mvp","agent_id":"AR#1","parent_id":"ORC#0","edge_label":"archive_entry","expected_output":".claude/tasks/outputs/outbound-p1-mvp-AR-1783819913.md","note":"Sprint archive: 14/14 audited+committed+pushed; REQVAL 18/19, R-011 human visual gate open; checkpoint write."}
-{"seq":13,"ts":"2026-07-12T01:35:31Z","ev":"COMPLETE","task_id":"outbound-p1-mvp","agent_id":"AR#1","parent_id":"ORC#0","edge_label":"archive_entry","output_files":[".claude/tasks/outputs/outbound-p1-mvp-AR-1783819913.md"],"auto_logged":true}
 {"seq":14,"ts":"2026-07-12T01:36:06Z","ev":"COMPLETE","task_id":"outbound-p1-mvp","agent_id":"RV#1","parent_id":"ORC#0","edge_label":"requirements_coverage_report","output_files":[".claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md"],"note":"backfilled by ORC \u2014 SubagentStop hook did not auto-log"}
 {"seq":15,"ts":"2026-07-12T01:36:06Z","ev":"BACKFILL_SCAN","task_id":"system","agent_id":"ORC#0","parent_id":"HUMAN_SESSION","edge_label":"backfill_scan_report","note":"backfill-autofire scan: checked=1 backfilled=1 ghost_tombstoned=0 ghost_skip_tombstoned=0 duplicate_skipped=0 failed=0","scan_summary":{"checked":1,"backfilled":1,"ghost_tombstoned":0,"ghost_skip_tombstoned":0,"duplicate_skipped":0,"failed":0}}
 {"seq":16,"ts":"2026-07-12T01:42:16Z","ev":"SPAWN","task_id":"outbound-p1-hero-morph","agent_id":"FE#10","parent_id":"ORC#0","edge_label":"task_packet","expected_output":".claude/tasks/outputs/outbound-p1-hero-morph-FE-1783820536.md","note":"Post-close human amendment from R-011 viewing pass: hero slides to top + morphs to compact bar after fly-in settle / first interaction."}
@@ -73,6 +56,9 @@ auto-committed by this hook — manual ORC commit-packet is required.
 {"seq":18,"ts":"2026-07-12T02:13:09Z","ev":"SPAWN","task_id":"outbound-p1-hero-morph","agent_id":"AUD#16","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md","note":"GATE-AUDIT for post-close amendment; live playwright + Tier-3 eyeball of both hero states + morph."}
 {"seq":19,"ts":"2026-07-12T02:27:57Z","ev":"AUDIT_PASS","task_id":"outbound-p1-hero-morph","agent_id":"AUD#16","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md"]}
 {"seq":20,"ts":"2026-07-12T02:29:33Z","ev":"BACKFILL_SCAN","task_id":"system","agent_id":"ORC#0","parent_id":"HUMAN_SESSION","edge_label":"backfill_scan_report","note":"backfill-autofire scan: checked=0 backfilled=0 ghost_tombstoned=0 ghost_skip_tombstoned=0 duplicate_skipped=0 failed=0","scan_summary":{"checked":0,"backfilled":0,"ghost_tombstoned":0,"ghost_skip_tombstoned":0,"duplicate_skipped":0,"failed":0}}
+{"seq":21,"ts":"2026-07-12T02:29:45Z","ev":"BACKFILL_SCAN","task_id":"system","agent_id":"ORC#0","parent_id":"HUMAN_SESSION","edge_label":"backfill_scan_report","note":"backfill-autofire scan: checked=0 backfilled=0 ghost_tombstoned=0 ghost_skip_tombstoned=0 duplicate_skipped=0 failed=0","scan_summary":{"checked":0,"backfilled":0,"ghost_tombstoned":0,"ghost_skip_tombstoned":0,"duplicate_skipped":0,"failed":0}}
+{"seq":22,"ts":"2026-07-12T02:33:26Z","ev":"REQVAL_COVERED","task_id":"outbound-p1-mvp","agent_id":"ORC#0","parent_id":"HU","edge_label":"R-011 human visual pass","note":"Human viewed the live app post-hero-morph and approved (\"it looks great\", 2026-07-12). R-011 REQUIRES_HUMAN_VISUAL closed -> REQVAL 19/19 COVERED. Rulings R1-R4 remain standing ORC rulings for ratification at reflect/after-action cadence."}
+{"seq":23,"ts":"2026-07-12T02:33:26Z","ev":"SPAWN","task_id":"outbound-p1-mvp","agent_id":"AR#2","parent_id":"ORC#0","edge_label":"archive_entry (sprint close finalization)","expected_output":".claude/tasks/outputs/outbound-p1-mvp-AR-1783823606.md","note":"Append R-011 closure + hero-morph amendment to project_log; refresh checkpoint to CLOSED."}
 ```
 
 ---
