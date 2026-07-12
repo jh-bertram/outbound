@@ -17,7 +17,7 @@ Branch: all sprint work on feature branch `outbound-p1-mvp` (created off main at
   2. Commit-size W1 ruling — commits land post-audit via commit-packet, satisfying standards.md's "verification gate passed first" clause — MUST be relayed verbatim to the code-auditor at GATE-AUDIT.
   3. sc-locked-value-consistency script not present on this machine (verified); PM hand-lint (CLEAN) stands, spot-verified by both critics.
 
-## ORC Rulings (in-sprint, pending human report-time review)
+## ORC Rulings (RATIFIED by human 2026-07-12 — "ratify all", reflect-2026-07-12-1 §5)
 
 - **R1 (2026-07-11, WebKit sandbox constraint):** fe-02a proved WebKit/mobile-safari cannot launch
   in this sandbox (~35 missing system libraries, no root; non-root remediation attempted and
