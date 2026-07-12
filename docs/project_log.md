@@ -177,3 +177,101 @@ Live Deployment:
   </retention_keys>
   <commit_status>complete: beba476 (all 14 durability commits landed post-audit; pushed to origin/outbound-p1-mvp; Pages auto-deploy triggered; live)</commit_status>
 </archive_entry>
+
+<archive_entry>
+  <timestamp>2026-07-12T02:33:26Z</timestamp>
+  <task_id>outbound-p1-mvp</task_id>
+  <event_type>SPRINT_STATE</event_type>
+  <rationale>
+Sprint outbound-p1-mvp FORMALLY CLOSED with post-close amendment integrated and all requirements satisfied.
+
+**Post-Close Amendment Integration (R-011 Viewing Pass):**
+Following the initial sprint close (AR#1 entry, 2026-07-12T01:31:53Z), human conducted live-app viewing pass per R-011 gate and initiated single refinement task outbound-p1-hero-morph. Human feedback: "it can be big at first but it should slide to the top of the screen and transform to a smaller rectangle shape."
+
+Amendment implemented by FE#10 (2026-07-12T01:42:16Z spawn):
+- FLIP-morphed hero: centered Fraunces "Where to next?" card (big state, ~280px tall) → top-center pill bar (compact state, 161×32px)
+- Triggers: on fly-to settle (GlobeIntro.onSettle), OR first map canvas interaction (pointerdown/wheel), OR park selection
+- Reduced-motion path: compact renders directly under prefersReducedMotion without waiting for settle (sidesteps fe-06 sandbox quirk per R1)
+- Map center unobstructed post-morph: verified by hit-test + real marker selection in e2e/map-shell.spec.ts:81
+
+FE#10 committed at 22158d4 (2026-07-12T02:13:00Z, ceremony c5d3d7b). Audited PASS by AUD#16 (2026-07-12T02:27:57Z, verdict `.claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md`). Pages redeploy from 22158d4 confirmed SUCCESS.
+
+**R-011 Requirements Closure:**
+Human approved live app (post-amendment at 22158d4) with "it looks great" (2026-07-12). R-011 (BRIEF §7.6 "audited by actually viewing it") transitioned from REQUIRES_HUMAN_VISUAL PARTIAL to COVERED. ORC#0 logged REQVAL_COVERED event (seq 22, docs/events/agent-events-2026-07-12.jsonl, 2026-07-12T02:33:26Z). REQVAL overall status updated: **19/19 COVERED** (all requirements satisfied; no partial items remain).
+
+**New Deferred Item (P4 Candidate):**
+Post-amendment audit (AUD#16) identified: desktop park-detail-panel lacks deselect affordance (mobile has bottom-sheet swipe/tap close; desktop has none). Low-priority polish for P4. No functional gap; aesthetic refinement only.
+
+**Sprint Status: FORMALLY CLOSED**
+- All 15 tasks complete (14 core + 1 amendment)
+- All audits PASS (14 core + amendment AUD#16)
+- REQVAL: 19/19 COVERED (R-011 human visual pass complete)
+- Live deployment: https://jh-bertram.github.io/outbound/ at commit 22158d4 (HTTP 200, responsive, all features active)
+- No human gates remain open
+- Rulings R1–R4 pending ratification at optional /reflect cadence per convention (WebKit sandbox, vitest e2e-exclude, maplibre exemption, markers.spec hardening)
+
+**Evidence Paths:**
+- Primary sprint log: docs/project_log.md (initial entry above, seq 12)
+- Task registry: docs/task-registry.md (all task details, ORC rulings)
+- REQVAL with closure addendum: .claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md (lines 158–162, R-011 COVERED note)
+- Hero-morph audit verdict: .claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md (lines 1–50+, PASS)
+- Event log: docs/events/agent-events-2026-07-12.jsonl (seq 16–23, hero-morph spawn through R-011 closure)
+- Live site: https://jh-bertram.github.io/outbound/ (verified HTTP 200, bundle at 22158d4)
+
+Disposition: Sprint ready for next-phase planning. P4 candidates (desktop deselect, true-WebKit CI, coords spot-check, animation polish, photo carousel, trip persistence, a11y, perf, marketing) listed in SESSION-CHECKPOINT.md.
+  </rationale>
+  <dependencies>
+    outbound-p1-mvp initial entry (AR#1, 2026-07-12T01:31:53Z, docs/project_log.md);
+    outbound-p1-hero-morph (FE#10 + AUD#16, post-close amendment);
+    R-011 REQVAL_COVERED event (seq 22, 2026-07-12T02:33:26Z, ORC#0 human gate closure)
+  </dependencies>
+  <retention_keys>
+Sprint: outbound-p1-mvp
+Branch: outbound-p1-mvp (feature branch, pushed to origin; guarded-push enforcement active)
+BASE: 9c29919 (2026-07-11T00:11:24Z, genesis bootstrap)
+HEAD (post-amendment): 22158d4 (2026-07-12T02:13:00Z, FE#10 hero-morph commit; ceremony c5d3d7b; Pages deploy SUCCESS)
+Core HEAD (pre-amendment): beba476 (2026-07-12T00:59:42Z, fe-08 final)
+
+Durability Commits — 14 core + 1 amendment (task → sha):
+  Core: be-01→0dc48dd, fe-01→3e571a2, fe-03→8656e78, be-02→9b07724, be-05→512e9b3,
+        fe-02a→fbe9da4, be-03→6026c08, be-04→44e60a6, fe-02b→8d0fc68, fe-04→fc0aac2,
+        fe-05→72d39d1, fe-06→56a143d, fe-07→21ecc6e, fe-08→beba476
+  Amendment: outbound-p1-hero-morph→22158d4
+
+REQVAL: 19/19 COVERED (all requirements satisfied)
+  - 18 covered by core 14 tasks
+  - 1 (R-011, human-visual) now COVERED by human approval post-amendment
+  - Evidence: .claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md + closure addendum
+
+Test Suite (AUD#15 + AUD#16 amendment):
+  52 passed, 8 skipped, 0 failed (Playwright full suite --workers=1, desktop-chrome + mobile-chrome, final run at fe-08 AUD#15)
+  Amendment audit (AUD#16) confirmed hero-morph trigger logic, morph geometry, map unobstructed post-morph, reduced-motion path
+
+ORC Rulings (pending human report-time ratification at /reflect):
+  R1: WebKit sandbox → mobile-chrome project PASS, true-Safari deferred to CI/human machine
+  R2: vitest e2e-exclude fix ratified (independent confirm by be-03)
+  R3: maplibre-gl vendor chunk (1027.74 kB raw, 272.98 kB gzip) exempt from 1 MB gate (irreducible core engine)
+  R4: markers.spec test-only hardening authorized (product code untouched; a11y assertions remain)
+  Evidence: docs/task-registry.md § ORC Rulings
+
+Deferred Items (P4 candidates):
+  1. Desktop deselect affordance (park-detail-panel) — noted post-amendment
+  2. true-WebKit verification (R1 residual; CI/human machine)
+  3. Coords FOCO→Grand Canyon spot-check (AUD#8 WARNING: ~20% under expected, drive-time model refinement)
+  4. flytoSettled under reducedMotion emulation (fine-tuning, fe-02b context note)
+  5. SubagentStop hook filename mis-key (gander improvement inbox — record-only from this project)
+
+Live Deployment:
+  URL: https://jh-bertram.github.io/outbound/
+  Commit: 22158d4 (2026-07-12T02:13:00Z, post-amendment)
+  Status: HTTP 200, responsive, all features active, hero-morph amendment live
+  Verified by: RV#1 live-site verification (initial: 2026-07-12T01:28Z at beba476) + human approval (2026-07-12 post-22158d4)
+
+Session Notes:
+  - AR#2 closure finalizes sprint: appends hero-morph amendment detail + R-011 closure to project_log.md
+  - Updates SESSION-CHECKPOINT.md: HEAD→22158d4, sprint status→CLOSED, REQVAL→19/19 COVERED
+  - Rulings R1–R4 remain pending human ratification per convention (governance/context, not code gaps)
+  - Next phase (P4) proposed in SESSION-CHECKPOINT.md; subject to human prioritization
+  </retention_keys>
+  <commit_status>complete: 22158d4 (post-amendment, ceremony c5d3d7b; Pages deploy SUCCESS; hero-morph amendment integrated; R-011 COVERED)</commit_status>
+</archive_entry>

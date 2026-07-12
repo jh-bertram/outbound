@@ -5,12 +5,26 @@ type: project-doc
 # Session Checkpoint
 
 **Project:** outbound
-**Updated:** 2026-07-12 01:36:06 UTC (auto-rebuilt by session-end-checkpoint hook)
+**Updated:** 2026-07-12 02:29:45 UTC (auto-rebuilt by session-end-checkpoint hook)
+
+## ⚠ STALE — UNCOMMITTED DEBT PRESENT
+
+Tracked-modified files detected at session-end checkpoint rebuild. This checkpoint
+reflects the CURRENT working tree state but the listed files have not been committed.
+Do not treat this checkpoint as authoritative for sprint state until debt is resolved.
+
+**Uncommitted tracked paths (debt):**
+  - `docs/events/agent-events-2026-07-12.jsonl`
+
+Ceremony-class files (chore(orchestration) commit class per
+`.claude/skills/commit-packet/SKILL.md §Two-Commit Pattern`) should be committed
+before this checkpoint is treated as fresh. Non-ceremony files must NOT be
+auto-committed by this hook — manual ORC commit-packet is required.
 
 ## Agent Log Summary
-*Scanned at 2026-07-12T01:36:06.132095+00:00*
+*Scanned at 2026-07-12T02:29:45.293504+00:00*
 
-### CLOSED (30 task(s) — Stage-3 COMPLETE or drained)
+### CLOSED (32 task(s) — Stage-3 COMPLETE or drained)
 
   - `outbound-p1-be-02` (AUD) — `docs/agent-logs/AUD/outbound-p1-be-02.md`
   - `outbound-p1-be-03` (AUD) — `docs/agent-logs/AUD/outbound-p1-be-03.md`
@@ -24,6 +38,7 @@ type: project-doc
   - `outbound-p1-fe-06` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-06.md`
   - `outbound-p1-fe-07` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-07.md`
   - `outbound-p1-fe-08` (AUD) — `docs/agent-logs/AUD/outbound-p1-fe-08.md`
+  - `outbound-p1-hero-morph` (AUD) — `docs/agent-logs/AUD/outbound-p1-hero-morph.md`
   - `outbound-p1-be-01` (BE) — `docs/agent-logs/BE/outbound-p1-be-01.md`
   - `outbound-p1-be-02` (BE) — `docs/agent-logs/BE/outbound-p1-be-02.md`
   - `outbound-p1-be-03` (BE) — `docs/agent-logs/BE/outbound-p1-be-03.md`
@@ -40,6 +55,7 @@ type: project-doc
   - `outbound-p1-fe-06` (FE) — `docs/agent-logs/FE/outbound-p1-fe-06.md`
   - `outbound-p1-fe-07` (FE) — `docs/agent-logs/FE/outbound-p1-fe-07.md`
   - `outbound-p1-fe-08` (FE) — `docs/agent-logs/FE/outbound-p1-fe-08.md`
+  - `outbound-p1-hero-morph` (FE) — `docs/agent-logs/FE/outbound-p1-hero-morph.md`
   - `outbound-p1-mvp` (PM) — `docs/agent-logs/PM/outbound-p1-mvp.md`
   - `outbound-p1-mvp` (UI) — `docs/agent-logs/UI/outbound-p1-mvp.md`
 
@@ -47,16 +63,16 @@ type: project-doc
 *Source: agent-events-2026-07-12.jsonl*
 
 ```
-{"seq":4,"ts":"2026-07-12T00:25:15Z","ev":"SPAWN","task_id":"outbound-p1-fe-07","agent_id":"AUD#14","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-fe-07-AUD-1783815915.md","note":"Wave 5 GATE-AUDIT; live playwright + Tier-3 eyeball of trip-chain UX."}
-{"seq":5,"ts":"2026-07-12T00:35:18Z","ev":"AUDIT_PASS","task_id":"outbound-p1-fe-07","agent_id":"AUD#14","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-fe-07-AUD-1783815915.md"]}
-{"seq":6,"ts":"2026-07-12T00:36:57Z","ev":"SPAWN","task_id":"outbound-p1-fe-08","agent_id":"FE#9","parent_id":"ORC#0","edge_label":"task_packet","expected_output":".claude/tasks/outputs/outbound-p1-fe-08-FE-1783816617.md","note":"Wave 6 (final impl packet): day-by-day itinerary with explicit return leg."}
-{"seq":7,"ts":"2026-07-12T00:59:42Z","ev":"COMPLETE","task_id":"outbound-p1-fe-08","agent_id":"FE#9","parent_id":"ORC#0","edge_label":"ui_packet","output_files":[".claude/tasks/outputs/outbound-p1-fe-08-FE-1783816617.md"],"auto_logged":true}
-{"seq":8,"ts":"2026-07-12T00:59:55Z","ev":"SPAWN","task_id":"outbound-p1-fe-08","agent_id":"AUD#15","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-fe-08-AUD-1783817995.md","note":"Wave 6 GATE-AUDIT (final impl packet); bundled trip-panel edit adjudicated against BOTH fe-07/fe-08 SCs."}
-{"seq":9,"ts":"2026-07-12T01:12:21Z","ev":"AUDIT_PASS","task_id":"outbound-p1-fe-08","agent_id":"AUD#15","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-fe-08-AUD-1783817995.md"]}
-{"seq":10,"ts":"2026-07-12T01:13:36Z","ev":"SPAWN","task_id":"outbound-p1-mvp","agent_id":"RV#1","parent_id":"ORC#0","edge_label":"requirements_coverage_report","expected_output":".claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md","note":"Mode B spawned validator; 14-packet sprint; requirements from BRIEF.md + CLAUDE.md hard constraints + PM SCs."}
 {"seq":11,"ts":"2026-07-12T01:31:43Z","ev":"REQVAL_PARTIAL","task_id":"outbound-p1-mvp","agent_id":"RV#1","parent_id":"ORC#0","edge_label":"requirements_coverage_report","output_files":[".claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md"],"note":"ORC backfill (hook missed RV terminal). Mode B validator: 18/19 COVERED, 1 PARTIAL (R-011 REQUIRES_HUMAN_VISUAL - human viewing pass of live app at Step 4.5; not a code gap). Sprint close blocks only on the human gate."}
 {"seq":12,"ts":"2026-07-12T01:31:53Z","ev":"SPAWN","task_id":"outbound-p1-mvp","agent_id":"AR#1","parent_id":"ORC#0","edge_label":"archive_entry","expected_output":".claude/tasks/outputs/outbound-p1-mvp-AR-1783819913.md","note":"Sprint archive: 14/14 audited+committed+pushed; REQVAL 18/19, R-011 human visual gate open; checkpoint write."}
 {"seq":13,"ts":"2026-07-12T01:35:31Z","ev":"COMPLETE","task_id":"outbound-p1-mvp","agent_id":"AR#1","parent_id":"ORC#0","edge_label":"archive_entry","output_files":[".claude/tasks/outputs/outbound-p1-mvp-AR-1783819913.md"],"auto_logged":true}
+{"seq":14,"ts":"2026-07-12T01:36:06Z","ev":"COMPLETE","task_id":"outbound-p1-mvp","agent_id":"RV#1","parent_id":"ORC#0","edge_label":"requirements_coverage_report","output_files":[".claude/tasks/outputs/outbound-p1-mvp-REQVAL-1783818815.md"],"note":"backfilled by ORC \u2014 SubagentStop hook did not auto-log"}
+{"seq":15,"ts":"2026-07-12T01:36:06Z","ev":"BACKFILL_SCAN","task_id":"system","agent_id":"ORC#0","parent_id":"HUMAN_SESSION","edge_label":"backfill_scan_report","note":"backfill-autofire scan: checked=1 backfilled=1 ghost_tombstoned=0 ghost_skip_tombstoned=0 duplicate_skipped=0 failed=0","scan_summary":{"checked":1,"backfilled":1,"ghost_tombstoned":0,"ghost_skip_tombstoned":0,"duplicate_skipped":0,"failed":0}}
+{"seq":16,"ts":"2026-07-12T01:42:16Z","ev":"SPAWN","task_id":"outbound-p1-hero-morph","agent_id":"FE#10","parent_id":"ORC#0","edge_label":"task_packet","expected_output":".claude/tasks/outputs/outbound-p1-hero-morph-FE-1783820536.md","note":"Post-close human amendment from R-011 viewing pass: hero slides to top + morphs to compact bar after fly-in settle / first interaction."}
+{"seq":17,"ts":"2026-07-12T02:13:00Z","ev":"COMPLETE","task_id":"outbound-p1-hero-morph","agent_id":"FE#10","parent_id":"ORC#0","edge_label":"ui_packet","output_files":[".claude/tasks/outputs/outbound-p1-hero-morph-FE-1783820536.md"],"auto_logged":true}
+{"seq":18,"ts":"2026-07-12T02:13:09Z","ev":"SPAWN","task_id":"outbound-p1-hero-morph","agent_id":"AUD#16","parent_id":"ORC#0","edge_label":"audit_review","expected_output":".claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md","note":"GATE-AUDIT for post-close amendment; live playwright + Tier-3 eyeball of both hero states + morph."}
+{"seq":19,"ts":"2026-07-12T02:27:57Z","ev":"AUDIT_PASS","task_id":"outbound-p1-hero-morph","agent_id":"AUD#16","parent_id":"ORC#0","edge_label":"audit_review PASS","output_files":[".claude/tasks/outputs/outbound-p1-hero-morph-AUD-1783822389.md"]}
+{"seq":20,"ts":"2026-07-12T02:29:33Z","ev":"BACKFILL_SCAN","task_id":"system","agent_id":"ORC#0","parent_id":"HUMAN_SESSION","edge_label":"backfill_scan_report","note":"backfill-autofire scan: checked=0 backfilled=0 ghost_tombstoned=0 ghost_skip_tombstoned=0 duplicate_skipped=0 failed=0","scan_summary":{"checked":0,"backfilled":0,"ghost_tombstoned":0,"ghost_skip_tombstoned":0,"duplicate_skipped":0,"failed":0}}
 ```
 
 ---
@@ -73,22 +89,22 @@ type: project-doc
 
 **Project:** outbound
 **Sprint:** outbound-p1-mvp
-**Written:** 2026-07-12
-**Session closed after:** Complete MVP execution — 14/14 tasks audited PASS, committed, pushed; REQVAL 18/19 COVERED + 1 PARTIAL (human-reserved judgment); live deployment active.
+**Written:** 2026-07-12 (finalized with hero-morph amendment closure)
+**Session closed after:** Complete MVP execution — 14/14 core tasks + 1 post-close amendment (hero-morph) all audited PASS, committed, pushed; REQVAL 19/19 FULLY COVERED (R-011 human visual pass complete, "it looks great"); live deployment active and verified.
 
-**HEAD:** beba476 (all 14 durability commits landed post-audit; Pages auto-deploy at live URL)
+**HEAD:** 22158d4 (post-amendment, 2026-07-12T02:13:00Z; Pages deploy SUCCESS at this commit; ceremony c5d3d7b)
 
 ---
 
 ## Current State
 
-Sprint **CLOSED** with all intended outcomes delivered:
+Sprint **FORMALLY CLOSED** with all intended outcomes delivered and post-close amendment integrated:
 
-- **Outcome:** National-park road-trip explorer (Outbound) MVP shipped and live.
-- **Scope:** 14 packets across waves (scaffold → design+data → map shell → park detail → trip builder → itinerary + validation).
-- **Quality:** All audits PASS. 52 e2e tests pass / 8 skipped / 0 failed. Requirements coverage 18/19 (1 PARTIAL is human-visual judgment, not code gap).
-- **Deployment:** Live at https://jh-bertram.github.io/outbound/ (HTTP 200, responsive, all features active).
-- **Governance:** Feature branch pushed at human opt-in (no main, no force; guarded-push enforced). Commits durable post-audit via commit-packet per standards.md.
+- **Outcome:** National-park road-trip explorer (Outbound) MVP shipped, live, and visually approved.
+- **Scope:** 14 core packets + 1 post-close amendment (hero-morph FLIP affordance).
+- **Quality:** All audits PASS (15/15 total). 52 e2e tests pass / 8 skipped / 0 failed (final suite run at AUD#15). Requirements coverage **19/19 FULLY COVERED** (R-011 human visual pass: "it looks great", 2026-07-12).
+- **Deployment:** Live at https://jh-bertram.github.io/outbound/ (HTTP 200 from 22158d4, responsive, all features active, hero-morph amendment deployed).
+- **Governance:** Feature branch pushed at human opt-in (no main, no force; guarded-push enforced). Commits durable post-audit via commit-packet per standards.md. No open gates; ready for next phase.
 
 ---
 
@@ -108,13 +124,9 @@ Sprint **CLOSED** with all intended outcomes delivered:
 
 ## Open Items & Deferrals
 
-### R-011: Human Visual Pass (OPEN GATE — no code gap)
+### R-011: Human Visual Pass (CLOSED ✓)
 
-The single PARTIAL requirement (R-011, "visually appealing FIRST"). All animation mechanics are implemented and DOM-verified (globe intro, fly-to settle, progressive route trace, dot stagger, reduced-motion overrides). Auditor screenshot reviews on fe-02b/fe-06/fe-07/fe-08 confirm implementation.
-
-**What remains:** Human viewing pass at the live URL (desktop + human's own phone) to confirm motion *smoothness* and aesthetic appeal — this is reserved to the human's judgment and cannot be proven from static evidence. No code gap identified; no implementing-agent work indicated.
-
-**Timing:** GATE-DEPLOY step 4.5 (after sprint close, before formal sign-off).
+Requirement R-011 ("visually appealing FIRST") is now **COVERED**. Human viewed the live app (including post-close hero-morph amendment at commit 22158d4) and approved: "it looks great" (2026-07-12). All animation mechanics verified by audit screenshots (globe intro, fly-to settle + morph, progressive route trace, dot stagger, reduced-motion overrides) and confirmed acceptable by human review. REQVAL status: **19/19 COVERED** (no requirements remain open).
 
 ### Rulings Pending Human Report-Time Review
 
@@ -127,12 +139,13 @@ Four in-sprint ORC rulings documented in docs/task-registry.md § ORC Rulings; a
 
 Evidence: docs/task-registry.md + .claude/tasks/outputs/ audit reports for each ruling.
 
-### Minor Deferrals (to next sprint or post-deploy)
+### Minor Deferrals (to P4 or next session)
 
-1. **true-WebKit verification** — R1 environment-blocked in sandbox; deferred to CI/human machine per ruling.
-2. **Coords spot-check FOCO→Grca** — AUD#8 WARNING: live fetch measures ~20% under expected. Low-priority; data team follow-up.
-3. **flytoSettled under reducedMotion emulation** — fe-02b owner noted; context-dependent behavior fine-tuning.
-4. **SubagentStop hook filename mis-key** — gander improvement inbox (record-only from this project; not a sprint gap).
+1. **Desktop deselect affordance (park-detail-panel)** — Mobile has bottom-sheet swipe/tap close; desktop lacks a visible "X" button or click-outside affordance. Low-priority polish for P4. Noted during post-amendment review (hero-morph amendment did not alter this scope).
+2. **true-WebKit verification** — R1 environment-blocked in sandbox; deferred to CI/human machine per ruling. In-repo mobile receipts (mobile-chrome emulation) green; true-Safari engine-level variance remains pending CI/human verification.
+3. **Coords spot-check FOCO→Grand Canyon** — AUD#8 WARNING: live fetch measures ~20% under expected (37.929 h vs 45 h planned). Low-priority; data team / drive-time model follow-up.
+4. **flytoSettled under reducedMotion emulation** — Fine-tuning context-dependent behavior; fe-02b owner noted; not blocking.
+5. **SubagentStop hook filename mis-key** — gander improvement inbox (record-only from this project; not a sprint gap).
 
 ---
 
@@ -198,4 +211,4 @@ Evidence: docs/task-registry.md + .claude/tasks/outputs/ audit reports for each 
 
 ---
 
-> **For the human:** R-011 visual pass is the only remaining gate. View the live site (desktop + mobile) at your convenience to confirm motion smoothness and visual appeal. No code gaps; estimated <5 min review. After that pass, the sprint is formally closed and ready for next-phase planning.
+> **Sprint formally closed.** All 19 requirements COVERED. R-011 human visual pass complete (human approved: "it looks great", 2026-07-12). Hero-morph amendment integrated and deployed. No open gates. Ready for next-phase planning (P4 polish & scale candidates listed above).
