@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Map, MapProvider, Source, Layer, useMap } from '@vis.gl/react-maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import { cubicBezier } from 'motion/react'
+import { cubicBezier, motion, useReducedMotion } from 'motion/react'
 import { MapPinOff } from 'lucide-react'
 import { Card } from './ui/card'
 import { ParkMarkersLayer } from './park-markers-layer'
@@ -12,6 +12,7 @@ import { ItineraryPanel } from './itinerary-panel'
 import { DotLegend } from './dot-legend'
 import { FORT_COLLINS } from '@/data/constants'
 import { useOutboundStore } from '@/lib/store'
+import { cn } from '@/lib/utils'
 
 /**
  * Full-viewport MapLibre canvas — the app's permanent base layer
@@ -58,6 +59,17 @@ const FLYTO_DURATION_MS = 1400 // --motion-flyto-duration
 const FLYTO_EASING = cubicBezier(0.25, 0.1, 0.25, 1) // --motion-flyto-curve
 const REDUCED_MOTION_DURATION_MS = 1 // --motion-reduced-motion-override
 
+// outbound-p1-hero-morph: DESIGN.md's Motion Tokens table has no dedicated
+// token for a hero slide+shrink morph (it covers flyto/route-trace/dot/card
+// only). Reusing --motion-card-enter-duration / --motion-card-curve — the
+// same nearest-analogous-card-motion mirror already established by every
+// other motion/react consumer in this codebase (trip-panel.tsx's
+// PANEL_CURVE, park-detail-panel.tsx's CARD_CURVE, itinerary-panel.tsx's
+// PANEL_CURVE all reuse this exact pair) — a documented judgment call, not
+// an invented value.
+const HERO_MORPH_DURATION_S = 0.32 // --motion-card-enter-duration
+const HERO_MORPH_CURVE = cubicBezier(0.16, 1, 0.3, 1) // --motion-card-curve
+
 const INITIAL_VIEW_STATE = {
   longitude: FORT_COLLINS.lng,
   latitude: FORT_COLLINS.lat,
@@ -70,8 +82,14 @@ const INITIAL_VIEW_STATE = {
  * `MapCanvas`) purely so it can call `useMap()` and reach that instance —
  * same reason the six feature slots are children of `<Map>` rather than
  * page-level siblings.
+ *
+ * `onSettle` (outbound-p1-hero-morph): fired once, the moment the fly-in
+ * actually reaches its target zoom — the same instant the `flytoSettled`
+ * DOM signal below is set. Wired to `EmptyStateHero`'s morph trigger via
+ * `MapCanvas`'s lifted `morphed` state (see that component) rather than
+ * having `EmptyStateHero` poll/observe the DOM dataset flag itself.
  */
-function GlobeIntro() {
+function GlobeIntro({ onSettle }: { onSettle: () => void }) {
   const { current } = useMap()
 
   useEffect(() => {
@@ -104,6 +122,7 @@ function GlobeIntro() {
       const handleMoveEnd = () => {
         if (Math.abs(map.getZoom() - FLYTO_TARGET_ZOOM) > FLYTO_SETTLE_ZOOM_TOLERANCE) return
         document.body.dataset['flytoSettled'] = 'true'
+        onSettle()
         map.off('moveend', handleMoveEnd)
       }
       map.on('moveend', handleMoveEnd)
@@ -113,7 +132,44 @@ function GlobeIntro() {
     return () => {
       map.off('style.load', startGlobeIntro)
     }
-  }, [current])
+  }, [current, onSettle])
+
+  return null
+}
+
+/**
+ * outbound-p1-hero-morph: fires `onInteract` once, on the first `pointerdown`
+ * or `wheel` event dispatched directly on the live MapLibre WebGL canvas —
+ * the ORC-documented early-trigger half of the morph's OR-condition ("the
+ * fly-in settle signal OR a first user map interaction, whichever comes
+ * first" — task packet § Design intent). Listens on `map.getCanvas()`
+ * specifically (not `map.getContainer()`, which also wraps the marker/panel
+ * overlay DOM `<Map>`'s other children render into) so clicking chrome —
+ * a park marker, the trip panel, the dot legend — never counts as "map
+ * interaction" here; only a genuine pan/zoom/click-through gesture on the
+ * canvas itself does. Mounted as a child of `<Map>` for `useMap()` access,
+ * same reasoning as `GlobeIntro`/`HillshadeOverlay` above.
+ */
+function FirstMapInteractionListener({ onInteract }: { onInteract: () => void }) {
+  const { current } = useMap()
+
+  useEffect(() => {
+    if (!current) return
+    const canvas = current.getMap().getCanvas()
+
+    const handleInteraction = () => {
+      onInteract()
+      canvas.removeEventListener('pointerdown', handleInteraction)
+      canvas.removeEventListener('wheel', handleInteraction)
+    }
+
+    canvas.addEventListener('pointerdown', handleInteraction, { passive: true })
+    canvas.addEventListener('wheel', handleInteraction, { passive: true })
+    return () => {
+      canvas.removeEventListener('pointerdown', handleInteraction)
+      canvas.removeEventListener('wheel', handleInteraction)
+    }
+  }, [current, onInteract])
 
   return null
 }
@@ -168,35 +224,104 @@ function HillshadeOverlay() {
  * + Constitution's Fraunces-rationing rule: hero headline is one of the
  * three narrow uses of the display font). Hidden once a destination is
  * selected (fe-03 `selectedId`, read-only here).
+ *
+ * outbound-p1-hero-morph (post-close human amendment, R-011 viewing pass):
+ * the human's finding was that this big centered card blocks the map on
+ * initial exploration even though it doesn't stay forever. Rather than
+ * unmount/remount a second "compact" element (which would flash), this is
+ * ONE `motion.div` that MORPHS in place — Framer's `layout` prop drives the
+ * slide-to-top + shrink-to-a-rectangle via its FLIP animation as the
+ * conditional Tailwind classes below change the wrapper's margin-top
+ * (position) and the Card's own padding/gap/radius (shape). Trigger: the
+ * fly-in settle signal OR the first pointerdown/wheel on the live map
+ * canvas, whichever comes first (`morphed`, lifted to `MapCanvas` below) —
+ * OR any real park selection (see the effect below), which is itself
+ * decisive map interaction and closes the "fast select→deselect before
+ * either trigger fires" gap so the BIG card can never resurface on
+ * deselection (task packet: "never the big card again").
  */
-function EmptyStateHero() {
+function EmptyStateHero({ morphed, triggerMorph }: { morphed: boolean; triggerMorph: () => void }) {
   const selectedId = useOutboundStore((state) => state.selectedId)
+  const prefersReducedMotion = useReducedMotion() ?? false
+
+  useEffect(() => {
+    if (selectedId) triggerMorph()
+  }, [selectedId, triggerMorph])
+
   if (selectedId) return null
 
+  // Reduced motion renders the compact state directly, with no slide, and
+  // never depends on `morphed`/`flytoSettled` at all — sidesteps the known
+  // quirk (outbound-p1-fe-06's packet) that `flytoSettled` never resolves
+  // under Playwright's `reducedMotion: 'reduce'` emulation in this sandbox.
+  const compact = prefersReducedMotion || morphed
+
   return (
-    <div
-      data-testid="empty-state-hero"
-      className="pointer-events-none absolute inset-x-0 top-1/4 z-10 flex justify-center px-[var(--space-6)]"
-    >
-      <Card className="pointer-events-auto mx-auto flex max-w-md flex-col items-center gap-[var(--space-4)] px-[var(--space-8)] py-[var(--space-8)] text-center shadow-[var(--elevation-2)]">
-        <MapPinOff aria-hidden="true" className="size-[var(--space-8)] text-muted-foreground" />
-        <h1 className="font-display text-5xl leading-[var(--line-height-heading)] text-foreground">
-          Where to next?
-        </h1>
-        <p className="text-base text-muted-foreground">
-          Click any pine-green marker to start planning.
-        </p>
-      </Card>
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center px-[var(--space-6)]">
+      <motion.div
+        data-testid="empty-state-hero"
+        data-morph-state={compact ? 'compact' : 'big'}
+        layout
+        transition={{ duration: prefersReducedMotion ? 0 : HERO_MORPH_DURATION_S, ease: HERO_MORPH_CURVE }}
+        className={cn('pointer-events-auto w-fit', compact ? 'mt-[var(--space-6)]' : 'mt-[25vh]')}
+      >
+        <Card
+          className={cn(
+            'flex items-center text-center shadow-[var(--elevation-2)]',
+            compact
+              ? 'w-fit flex-row gap-[var(--space-2)] rounded-[var(--radius-full)] px-[var(--space-4)] py-[var(--space-2)]'
+              : 'mx-auto max-w-md flex-col gap-[var(--space-4)] px-[var(--space-8)] py-[var(--space-8)]',
+          )}
+        >
+          <MapPinOff
+            aria-hidden="true"
+            className={cn('shrink-0 text-muted-foreground', compact ? 'size-4' : 'size-[var(--space-8)]')}
+          />
+          <h1
+            className={cn(
+              'text-foreground',
+              // DESIGN.md's derived type scale (§ Typography) assigns
+              // Fraunces only at the 3xl-5xl steps; the compact bar's text
+              // must fit a small top rectangle, well below that floor, so
+              // it drops to Inter (the table's own prescribed font below
+              // 3xl) rather than shrinking Fraunces past its documented
+              // range. This is still the one empty-state-hero headline the
+              // Constitution's Fraunces-rationing rule permits — not a
+              // second, new Fraunces use — just rendered at an Inter step
+              // once compact.
+              compact
+                ? 'text-sm leading-none font-semibold whitespace-nowrap'
+                : 'font-display text-5xl leading-[var(--line-height-heading)]',
+            )}
+          >
+            Where to next?
+          </h1>
+          {!compact && (
+            <p className="text-base text-muted-foreground">
+              Click any pine-green marker to start planning.
+            </p>
+          )}
+        </Card>
+      </motion.div>
     </div>
   )
 }
 
 export function MapCanvas() {
+  // outbound-p1-hero-morph: lifted above `<Map>` so the same stable
+  // callback can be handed to both in-map trigger sources (GlobeIntro's
+  // settle signal, FirstMapInteractionListener's early-interaction signal)
+  // without EmptyStateHero (a sibling of `<Map>`, not a child) needing to
+  // observe the `flytoSettled` DOM dataset flag itself.
+  const [morphed, setMorphed] = useState(false)
+  const triggerMorph = useCallback(() => setMorphed(true), [])
+
   return (
     <MapProvider>
       <Map id="outbound-map" mapStyle={LIBERTY_STYLE_URL} initialViewState={INITIAL_VIEW_STATE}>
         <HillshadeOverlay />
-        <GlobeIntro />
+        <GlobeIntro onSettle={triggerMorph} />
+        <FirstMapInteractionListener onInteract={triggerMorph} />
         <ParkMarkersLayer />
         <RouteAndDotsLayer />
         <ParkDetailPanel />
@@ -204,7 +329,7 @@ export function MapCanvas() {
         <ItineraryPanel />
         <DotLegend />
       </Map>
-      <EmptyStateHero />
+      <EmptyStateHero morphed={morphed} triggerMorph={triggerMorph} />
     </MapProvider>
   )
 }
